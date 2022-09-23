@@ -35,8 +35,8 @@ const AddProduct = () => {
                 value={imgname} onChange={(e) => setName(e.target.value)} />
             <input className="inputbox" type="text" placeholder="enter tag"
                 value={tag} onChange={(e) => setTag(e.target.value)} />
-            <input type="file" className="inputbox" name="upload_file" onChange={handleInputChange} ></input>
-            <button onClick={addProduct} type="button" className="btnsn">Add photo</button>
+          <form><input  type="file" className="inputbox" name="upload_file" onChange={handleInputChange} ></input>
+         </form>   <button onClick={addProduct} type="button" className="btnsn">Add photo</button>
 
         </div>
     )

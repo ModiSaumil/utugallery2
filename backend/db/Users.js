@@ -47,6 +47,12 @@ const userSchema = new mongoose.Schema({
         type: String,
         required: false
     },
+
+    STATUS:{
+        type:Number,
+        required: false
+
+    }
 });
 
 module.exports = mongoose.model("user",userSchema);
