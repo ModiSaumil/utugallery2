@@ -3,7 +3,29 @@
   background-color: rgb(18, 164, 187);
   font-size: initial;
   margin: auto;
-  text-align: center;  
+   
+}
+
+.product-list{
+  text-align: center;
+  margin-top: 20px;
+}
+
+.product-list ul{
+margin: auto;
+}
+
+.product-list ul li{
+  display: inline-block;
+  border: 1px solid #61dafb;
+  padding: 5px;
+  width: 180px;
+}
+
+.register{
+  padding: 3px;
+  margin-top: 5px;
+
 }
 
 .logo{
@@ -28,7 +50,7 @@
 }
 .inputbox{
     display: block;
-    margin-top: 30px;
+    margin-top: 20px;
     padding: 15px;
     width: 50%;
     border: none;
@@ -37,8 +59,8 @@
 }
 
 .btnsn{
-  margin-top: 30px;
-  padding: 10px;
+  margin-top: 20px;
+  padding: 15px;
   width: 150px;
   background-color: skyblue;
   border: none;
@@ -48,13 +70,21 @@
 .nav-ul li{
       display: inline-block;
       padding: 10px;
+      text-align: right; 
 }
 
-.foter{
-  color: white;
-      position: absolute;
-      bottom: 0;
+.logout{
+  font-style: italic;
+  
+}
+
+.footer{
+      color: white;
+      padding-top: 1px;
+      padding-bottom: 1px;
+      bottom: 0px;
       width: 100%;
+      margin-top: 20px;
       text-align: center;
       background-color:rgb(18, 164, 187);
 
@@ -64,7 +94,7 @@
   padding: 5px;
   margin-right: 10px;
   text-decoration: none;
-  text-align: center;
+  text-align: left;
 }
 
 @media (prefers-reduced-motion: no-preference) {
