@@ -1,36 +1,25 @@
-import React from "react";
+import React, { Component } from "react";
 
-class ProductList extends React.Component {
-
-    constructor(props) {
-        super(props);
-   
-        this.state = {
+class ProductList extends Component {
+    
+        state = {
             items: [],
-            DataisLoaded: false
         };
-    }
+    
    
     // ComponentDidMount is used to
     // execute the code 
     componentDidMount() {
         fetch("http://localhost:5000/getphotos")
             .then((res) => res.json())
-            .then((json) => {
-                this.setState({
-                    items: json,
-                    DataisLoaded: true
-                });
-            })
-    }
-
-
+            .then(items=> this.setState({
+                    items }))
+}
 
     render() {
-        const { DataisLoaded, items } = this.state;
-        if (!DataisLoaded) return <div>
-            <h1> Pleses wait some time.... </h1> </div> ;
-   
+        
+        console.log(this.state.items)
+
         return (
         <div className = "product-list">
             <h1> Photo list </h1>  
@@ -43,7 +32,26 @@ class ProductList extends React.Component {
                  <li>Operation</li>
              </ul>
     {
-             items.map((item,index)=>
+        this.state.items ? this.state.items.map((img,item) =>
+
+        (<ul key={item}>
+            <li>{item+1}</li>
+            <li>{img.userid}</li>
+            <li>{img.imgname}</li>
+            <li>{img.tag}</li>
+                 
+        <li>{img ? 
+        <img src={`./{img.photo}`}alt={img.imgname}/>
+        :
+        <span>deleted</span>
+        }</li>
+        <li><button>Delete</button></li>
+        </ul>
+        )):
+        <h3>loading</h3>
+
+
+             /* items.map((item,index)=>
              <ul key={item}>
                  <li>{index+1}</li>
                  <li>{item.userid}</li>
@@ -52,7 +60,9 @@ class ProductList extends React.Component {
                  <li><img src={item.photo} alt="dp"></img></li>
                  <li><button  >Delete</button></li>
              </ul>
-             )
+             ) */
+
+
 
           }
             

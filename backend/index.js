@@ -6,6 +6,7 @@ const app = express();
 const Product = require("./db/Product");
 app.use(express.json());
 app.use(cors());
+//const Productmul = require("./db/Productmul");
 
 app.post("/registration", async (req, resp) => {
     let user = new User(req.body);
@@ -91,7 +92,7 @@ app.get("/getphotos", async (req, resp, next) => {
     } else {
         resp.send({ result: "no products found" })
     }
-})
+})  
 
 app.get("/getPhotographers", async (req, resp, next) => {
     let user = await User.find(
@@ -126,6 +127,25 @@ app.get("/getViewers", async (req, resp, next) => {
         resp.send({ result: "no user found" })
     }
 })
+
+app.patch("/update_users/:id",async (req, resp,next) => {
+    try {
+        let id = req.params.id;
+        const update = req.body;
+        const options = { new: true };
+        const result = await User.findByIdAndUpdate(id,update,options);
+
+        if (result) {
+            resp.send(result);
+        } else {
+            resp.send('Not found');
+            return;
+        }
+    } catch (error) {
+        console.log(error.message);
+    }
+})
+
 
 app.patch("/update_photos/:id",async (req, resp,next) => {
     try {
@@ -179,6 +199,30 @@ app.get("/searchtags/:key", async (req, resp, next) => {
         resp.send({ result: "no prod found" })
     }
 })
+
+
+
+// app.post("/addproductmultiple", upload.array("files"), async (req, resp, next) => {
+//     const path = req.file != undefined ? req.file.path.replace(/\\/g, "/") : "";
+
+//     let filesArray =[];
+//     req.files.array.foreach(element => {
+//         const file = {
+//             fileName:element.originalname,
+//             filePath:element.path,
+//         }
+//         filesArray.push(file);
+//     });
+//     const productmul = new Productmul({
+//             title:req.body.title,
+//             files: filesArray
+//     });
+//     await productmul.save();
+// })
+
+
+
+
 
 
 app.listen(5000)
