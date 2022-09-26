@@ -6,7 +6,8 @@ const app = express();
 const Product = require("./db/Product");
 app.use(express.json());
 app.use(cors());
-//const Productmul = require("./db/Productmul");
+const Productmul = require("./db/Productmul");
+
 
 app.post("/registration", async (req, resp) => {
     let user = new User(req.body);
