@@ -146,7 +146,6 @@ app.patch("/update_users/:id",async (req, resp,next) => {
     }
 })
 
-
 app.patch("/update_photos/:id",async (req, resp,next) => {
     try {
         let id = req.params.id;
