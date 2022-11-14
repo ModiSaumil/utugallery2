@@ -7,6 +7,10 @@ const AddProduct = () => {
     const [imgname, setName] = React.useState('');
     const [tag, setTag] = React.useState('');
     
+    const changeCase=(event)=>{
+        event.preventDefault();
+        setTag(event.target.value.toUpperCase());
+    }
 
     const addProduct = async () => {
         console.warn(imgname, tag);
@@ -34,7 +38,7 @@ const AddProduct = () => {
             <input className="inputbox" type="text" placeholder="enter image name"
                 value={imgname} onChange={(e) => setName(e.target.value)} />
             <input className="inputbox" type="text" placeholder="enter tag"
-                value={tag} onChange={(e) => setTag(e.target.value)} />
+                value={tag} onChange={(e) => setTag(e.target.value)} onMouseEnter={changeCase} />
           <form><input  type="file" className="inputbox" name="upload_file" onChange={handleInputChange} ></input>
          </form>   <button onClick={addProduct} type="button" className="btnsn">Add photo</button>
 

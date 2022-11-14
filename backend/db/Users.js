@@ -48,10 +48,10 @@ const userSchema = new mongoose.Schema({
         required: false
     },
 
-    STATUS:{
-        type:Number,
-        required: false
-
+    status:{
+       type: Number,
+       required: false,
+       default: 0
     }
 });
 

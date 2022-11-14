@@ -8,7 +8,7 @@ app.use(express.json());
 app.use(cors());
 const Productmul = require("./db/Productmul");
 
-
+//registration
 app.post("/registration", async (req, resp) => {
     let user = new User(req.body);
     let result = await user.save();
@@ -23,6 +23,7 @@ app.post("/registration", async (req, resp) => {
     }
 })
 
+//login
 app.post("/login", async (req, resp, next) => {
     console.log(req.body)
     if (req.body.password && req.body.emailid) {
@@ -45,15 +46,17 @@ const multer = require("multer");
 const { parse } = require("path");
 const Path = require("path");
 
+//photo storage path
 const storage = multer.diskStorage({
     destination: function (req, file, cb) {
-        cb(null, "./uploads/categories");
+        cb(null, "C:/Users/saumi/OneDrive/Desktop/utugallery/backend/uploads/categories");
     },
     filename: function (req, file, cb) {
         cb(null,file.originalname);
     }
 });
 
+//photo filters
 const fileFilter = (req, file, callback) => {
     const acceptableExt = [".png", ".jpg", ".jpeg",".PNG", ".JPG", ".JPEG"];
     if (!acceptableExt.includes(Path.extname(file.originalname))) {
@@ -72,6 +75,7 @@ var upload = multer({
     filesize: 1048576
 });
 
+//getallphotos
 app.post("/addproduct", upload.single("photo"), async (req, resp, next) => {
     const path = req.file != undefined ? req.file.path.replace(/\\/g, "/") : "";
 
@@ -86,6 +90,8 @@ app.post("/addproduct", upload.single("photo"), async (req, resp, next) => {
     resp.send(result);
 })
 
+//getallphotosbyuploadid
+//getallphotos
 app.get("/getphotos", async (req, resp, next) => {
     let products = await Product.find();
     if (products.length > 0) {
@@ -95,6 +101,7 @@ app.get("/getphotos", async (req, resp, next) => {
     }
 })  
 
+//getphotographer
 app.get("/getPhotographers", async (req, resp, next) => {
     let user = await User.find(
         {
@@ -112,6 +119,7 @@ app.get("/getPhotographers", async (req, resp, next) => {
     }
 })
 
+//getviewer
 app.get("/getViewers", async (req, resp, next) => {
     let user = await User.find(
         {
@@ -129,6 +137,17 @@ app.get("/getViewers", async (req, resp, next) => {
     }
 })
 
+//getallusers
+app.get("/getall", async (req, resp, next) => {
+    let user = await User.find();
+    if (user.length > 0) {
+        resp.send(user)
+    } else {
+        resp.send({ result: "no user found" })
+    }
+})
+
+//updateuser
 app.patch("/update_users/:id",async (req, resp,next) => {
     try {
         let id = req.params.id;
@@ -147,24 +166,31 @@ app.patch("/update_users/:id",async (req, resp,next) => {
     }
 })
 
-app.patch("/update_photos/:id",async (req, resp,next) => {
-    try {
-        let id = req.params.id;
-        const update = req.body;
-        const options = { new: true };
-        const result = await User.findByIdAndUpdate(id,update,options);
-
-        if (result) {
-            resp.send(result);
-        } else {
-            resp.send('Not found');
-            return;
-        }
-    } catch (error) {
-        console.log(error.message);
+//updatephotofetch
+app.get("/update_photos/:id",async (req, resp,next) => {
+    let result = await Product.findOne({_id:req.params.id})
+    if(result)
+    {
+        resp.send(result)
     }
+    else
+    {
+        resp.send({result:"no photo found "})
+    }  
 })
 
+//updatephoto
+app.put("/update_photos/:id", async(req, resp ,next)=>{
+    let result = await Product.updateOne(
+        {_id:req.params.id},
+        {
+            $set : req.body
+        }
+    )
+    resp.send(result)
+})
+
+//softdelete
 app.patch("/delete_photos/:id",async (req, resp,next) => {
     try {
         let id = req.params.id;
@@ -183,6 +209,13 @@ app.patch("/delete_photos/:id",async (req, resp,next) => {
     }
 })
 
+//harddelete
+app.delete("/delete_photo/:id",async (req, resp, next)=>{
+    const result = await Product.deleteOne({_id:req.params.id})
+    resp.send(result); 
+})
+
+//searchtagsw
 app.get("/searchtags/:key", async (req, resp, next) => {
     let prod = await Product.find(
         {
@@ -200,8 +233,7 @@ app.get("/searchtags/:key", async (req, resp, next) => {
     }
 })
 
-
-
+//insert multiple photos
 // app.post("/addproductmultiple", upload.array("files"), async (req, resp, next) => {
 //     const path = req.file != undefined ? req.file.path.replace(/\\/g, "/") : "";
 
