@@ -57,7 +57,7 @@ function App() {
         <Route path='/photolist' element={<Photoview />}></Route>
         <Route path='/photoadd' element={<AddProduct />}></Route>
         <Route path='/photoupdate/:id' element={<Photoupdate />}></Route>
-        <Route path='/profileg' element={<Profilephotog />}></Route>
+        <Route path='/profileg/:id' element={<Profilephotog />}></Route>
         <Route path="/logout" element={<h1>Logout</h1>}></Route>
         </Route>
 
