@@ -12,8 +12,8 @@ const Category = require("./db/category");
 
 //add category
 app.post("/addcategory", async (req, resp) => {
-    let user = new User(req.body);
-    let result = await user.save();
+    let category = new Category(req.body);
+    let result = await category.save();
     result = result.toObject();
     resp.send(result);
 
@@ -62,6 +62,7 @@ app.post("/login", async (req, resp, next) => {
 const multer = require("multer");
 const { parse } = require("path");
 const Path = require("path");
+const category = require('./db/category');
 
 //photo storage path
 const storage = multer.diskStorage({
@@ -99,6 +100,7 @@ app.post("/addproduct", upload.single("photo"), async (req, resp, next) => {
     var model = {
         imgname: req.body.imgname,
         userid: req.body.userid,
+        category: req.body.category,
         tag: req.body.tag,
         photo: path,
     }
@@ -107,7 +109,7 @@ app.post("/addproduct", upload.single("photo"), async (req, resp, next) => {
     resp.send(result);
 })
 
-//getallphotosbyuploadid
+//getallphotosbyuploadid (bakiiii and important need)
 //getallphotos
 app.get("/getphotos", async (req, resp, next) => {
     let products = await Product.find();
@@ -115,6 +117,16 @@ app.get("/getphotos", async (req, resp, next) => {
         resp.send(products)
     } else {
         resp.send({ result: "no products found" })
+    }
+})  
+
+//get all categories
+app.get("/getcategories", async (req, resp, next) => {
+    let category = await Category.find();
+    if (category.length > 0) {
+        resp.send(category)
+    } else {
+        resp.send({ result: "no categories found" })
     }
 })  
 
