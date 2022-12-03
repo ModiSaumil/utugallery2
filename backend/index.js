@@ -7,6 +7,23 @@ const Product = require("./db/Product");
 app.use(express.json());
 app.use(cors());
 const Productmul = require("./db/Productmul");
+const Category = require("./db/category");
+
+
+//add category
+app.post("/addcategory", async (req, resp) => {
+    let user = new User(req.body);
+    let result = await user.save();
+    result = result.toObject();
+    resp.send(result);
+
+    if (result) {
+        console.log("category added!");
+    } else {
+        console.log("Error");
+    }
+})
+
 
 //registration
 app.post("/registration", async (req, resp) => {
@@ -75,7 +92,7 @@ var upload = multer({
     filesize: 1048576
 });
 
-//getallphotos
+//addphotos
 app.post("/addproduct", upload.single("photo"), async (req, resp, next) => {
     const path = req.file != undefined ? req.file.path.replace(/\\/g, "/") : "";
 

@@ -44,7 +44,7 @@ const UpdatePhoto = () => {
         });
         result = (await result).json()
         console.warn(result)
-        navigate('/adminphotolist')
+        navigate('/photolist')
     }
 
     return (

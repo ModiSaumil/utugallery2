@@ -1,7 +1,7 @@
 import React, {Component } from "react";
 import { Link } from "react-router-dom";
 
-class ProductList extends Component {
+class Homepage extends Component {
     
         state = {
             items: [],
@@ -24,21 +24,21 @@ class ProductList extends Component {
 
         return (
         <div className = "product-list">
-            <h1 className="h1tag">All Photos list </h1> 
+            <h1 className="h1tag"> Photo list </h1> 
                 <ul>
                  <li>Index no.</li>
-                 <li>User id</li>
+                 
                  <li>Photo name</li>
                  <li>Tags</li>
                  <li>Photo</li>
-                 <li>Operation</li>
+                 
              </ul>
     {
         this.state.items ? this.state.items.map((img,items) =>
 
         (<ul key={img._id}>
             <li>{items+1}</li>
-            <li>{img.userid}</li>
+            
             <li>{img.imgname}</li>
             <li>{img.tag}</li>
                  
@@ -47,9 +47,7 @@ class ProductList extends Component {
         :
         <span>deleted</span>
         }</li>
-        <li><button>Delete</button>
-            <Link to={"/update/"+img._id}>Update</Link>
-        </li>
+        
 
         </ul>
         )):
@@ -134,4 +132,4 @@ class ProductList extends Component {
 //      )
 // }
 
-export default ProductList;
+export default Homepage;

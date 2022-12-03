@@ -23,7 +23,7 @@ const AddProduct = () => {
         });
        result = await result.json()
        alert("image uploaded..")
-       navigate('/adminphotolist')
+       navigate('/photolist')
        console.warn(result);
     }
 
