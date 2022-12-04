@@ -39,12 +39,12 @@ const Nav = () => {
                 <li className='logout'>Welcome,{JSON.parse(auth).fname} {JSON.parse(auth).lname}</li>
                 <li><Link to="/adminphotolist">All Photos</Link> </li>
                 {/* <li><Link to="/add">Add Photos</Link> </li> */}
-                <li><Link to="/categories">Manage Category</Link> </li>
+                <li><Link to="/categories">Add Category</Link> </li>
                 <li><Link to="/photoglist">Photographers list</Link> </li>
-                
-                {/* <li><Link to="/profile">Profile</Link> </li> */}
+                <li><Link to="/managecategories">Manage Category</Link> </li>
+                <li><Link to="/viewerlist">Viewerlist</Link> </li>
                 <li ><Link onClick={logout} to="/SignUp">Logout</Link></li>
-                <input type="text" className="searchbox" placeholder="search any tags.."></input>
+                {/* <input type="text" className="searchbox" placeholder="search any tags.."></input> */}
 
             </ul>
                 :

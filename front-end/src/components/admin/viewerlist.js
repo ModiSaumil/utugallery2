@@ -1,7 +1,7 @@
 import React, { useState, useEffect, Component } from 'react';
 import { useNavigate, Link } from "react-router-dom";
 
-class Photographerlist extends Component {
+class Viewerlist extends Component {
 
     state = {
         items: [],
@@ -10,7 +10,7 @@ class Photographerlist extends Component {
     // ComponentDidMount is used to
     // execute the code 
     componentDidMount() {
-        fetch("http://localhost:5000/getPhotographers")
+        fetch("http://localhost:5000/getViewers")
             .then((res) => res.json())
             .then(items => this.setState({
                 items
@@ -25,7 +25,7 @@ class Photographerlist extends Component {
 
         return (
             <div className="photographerlist">
-                <h1 className="h1tag">All Photographers list </h1>
+                <h1 className="h1tag">All Viewer list </h1>
                 <ul>
                     <li>Index no.</li>
                     <li>First name</li>
@@ -59,4 +59,4 @@ class Photographerlist extends Component {
 }
 
 
-export default Photographerlist;
+export default Viewerlist;

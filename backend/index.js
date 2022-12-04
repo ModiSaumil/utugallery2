@@ -110,6 +110,7 @@ app.post("/addproduct", upload.single("photo"), async (req, resp, next) => {
 })
 
 //getallphotosbyuploadid (bakiiii and important need)
+//getallphotosbycategory (bakiiii and important need)
 //getallphotos
 app.get("/getphotos", async (req, resp, next) => {
     let products = await Product.find();
@@ -195,6 +196,30 @@ app.patch("/update_users/:id",async (req, resp,next) => {
     }
 })
 
+//updatecategory fetch
+app.get("/update_category/:id",async(req, resp, next) =>{
+    let result = await Category.findOne({_id:req.params.id})
+    if(result){
+        resp.send(result)
+    }
+    else
+    {
+        resp.send({result:"no category found "})
+    } 
+})
+
+//update category
+app.put("/update_category/:id", async(req, resp ,next)=>{
+    let result = await Category.updateOne(
+        {_id:req.params.id},
+        {
+            $set : req.body
+        }
+    )
+    resp.send(result)
+})
+
+
 //updatephotofetch
 app.get("/update_photos/:id",async (req, resp,next) => {
     let result = await Product.findOne({_id:req.params.id})
@@ -258,7 +283,7 @@ app.get("/searchtags/:key", async (req, resp, next) => {
     if (prod.length > 0) {
         resp.send(prod)
     } else {
-        resp.send({ result: "no prod found" })
+        resp.send({ result: "no keyword found" })
     }
 })
 

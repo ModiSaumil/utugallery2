@@ -3,7 +3,7 @@
   background-color: rgb(18, 164, 187);
   font-size: initial;
   margin: auto;
-   
+ 
 }
 
 .h1tag{
@@ -14,6 +14,28 @@ margin-right: 22%;
 .product-list{
   text-align: center;
   margin-top: 20px;
+}
+
+.photographerlist ul{
+  margin:1px;
+  width: fit-content;
+  margin-left: 15px;
+  }
+
+.photographerlist ul li{
+  display: inline-block;
+  border: 1px solid #61dafb;
+  padding: 5px;
+  margin-block: 1px;
+  font-size: small;
+  width: 150px;
+}
+
+.dropdownCategory{
+  border: 1px solid #b5b3b3;
+  height: 44px;
+  width: 371px;
+  border-radius: 5px;
 }
 
 .product-list ul{
@@ -108,7 +130,7 @@ margin-left: 15px;
 .nav-ul li{
       display: inline-block;
       padding: 10px;
-      text-align: right; 
+      text-align: right;     
 }
 
 .logout{

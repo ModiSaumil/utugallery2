@@ -7,11 +7,14 @@ import Login from './components/Login';
 import SignUp from './components/SignUp';
 //------------------------------------------------------------------------------------------
 import Managecategory from './components/admin/managecategory';
+import Displaycategory from './components/admin/displaycategories';
 import AddProduct from './components/admin/addproducts'
 import ProductList from './components/admin/productlist';
 import UpdateProfile from './components/admin/updateprofile';
 import UpdatePhoto from './components/admin/updatephoto';
+import Updatecategory from './components/admin/updatecategory';
 import Photographerlist from './components/admin/photographerlist';
+import Viewerlist from './components/admin/viewerlist';
 //------------------------------------------------------------------------------------------
 import Photoadd from './components/photographer/photoadd';
 import Photoupdate from './components/photographer/photoupdate';
@@ -50,6 +53,10 @@ function App() {
         <Route path="/categories" element={<Managecategory />}></Route>
         <Route path="/photoglist" element={<Photographerlist />}></Route>
         <Route path='/update/:id' element={<UpdatePhoto />}></Route>
+        <Route path='/Uppdate/:id' element={<Updatecategory />}></Route>
+        <Route path="/managecategories" element={<Displaycategory />}></Route>
+        <Route path="/viewerlist" element={<Viewerlist />}></Route>
+
         <Route path="/logout" element={<h1>Logout</h1>}></Route>
         </Route>
         

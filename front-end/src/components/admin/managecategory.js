@@ -1,11 +1,10 @@
-import React from "react";
+import React, { useState, useEffect } from 'react';
 import { useNavigate } from "react-router-dom";
 
 const Managecategory = () => {
     const navigate = useNavigate('');
     const [category, setCat] = React.useState('');
-    
- 
+  
 
     const addCategory = async () => {
         
@@ -19,7 +18,7 @@ const Managecategory = () => {
         });
        result = await result.json()
        alert("category added..")
-       navigate('/category')
+       navigate('/managecategories')
        console.warn(result);
     }
 
@@ -36,6 +35,8 @@ const Managecategory = () => {
 
         </div>
     )
+       
+
 }
 
 export default Managecategory;
