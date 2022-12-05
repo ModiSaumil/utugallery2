@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { Link, useNavigate } from "react-router-dom";
 
-const Homepage = () => {
+const Homepagetry = () => {
     const [photo, setPhoto] = React.useState([]);
 
     useEffect(() => {
@@ -37,4 +37,4 @@ const Homepage = () => {
     )
 }
 
-export default Homepage;
+export default Homepagetry;

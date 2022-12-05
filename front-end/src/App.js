@@ -15,10 +15,12 @@ import UpdatePhoto from './components/admin/updatephoto';
 import Updatecategory from './components/admin/updatecategory';
 import Photographerlist from './components/admin/photographerlist';
 import Viewerlist from './components/admin/viewerlist';
+import Homepagetry from './components/admin/homepagetry';
 //------------------------------------------------------------------------------------------
 import Photoadd from './components/photographer/photoadd';
 import Photoupdate from './components/photographer/photoupdate';
 import Photoview from './components/photographer/photoview';
+import Tryviewpage from './components/admin/tryviewpage';
 import Profilephotog from './components/photographer/profilephotog';
 //------------------------------------------------------------------------------------------
 import PrivateComponent from './components/privatecomponent';
@@ -27,6 +29,7 @@ import Privatecomponentphotographer from './components/privatecomponentphotograp
 import Privatecomponentviewer from './components/privatecomponentviewer';
 //------------------------------------------------------------------------------------------
 import Homepage from './components/viewer/homepage';
+import Viewerprofile from './components/viewer/viewerprofile';
 //------------------------------------------------------------------------------------------
 import Nav from './components/Nav';
 import Navphotographer from './components/navphotgrapher';
@@ -56,7 +59,6 @@ function App() {
         <Route path='/Uppdate/:id' element={<Updatecategory />}></Route>
         <Route path="/managecategories" element={<Displaycategory />}></Route>
         <Route path="/viewerlist" element={<Viewerlist />}></Route>
-
         <Route path="/logout" element={<h1>Logout</h1>}></Route>
         </Route>
         
@@ -70,10 +72,12 @@ function App() {
 
         <Route element={<Privatecomponentviewer />}>
         <Route path='/home' element={<Homepage />}></Route>
+        <Route path='/profilev/:id' element={<Viewerprofile />}></Route>
         <Route path="/logout" element={<h1>Logout</h1>}></Route>
         </Route>
         
         {/* <Route path='/main' element={<Pagemain />}></Route> */}
+        <Route path="/" element={<Homepage />}></Route>
         <Route path="/SignUp" element={<SignUp />}></Route>
         <Route path="/Login" element={<Login />}></Route>
       </Routes>

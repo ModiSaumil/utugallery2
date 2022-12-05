@@ -8,7 +8,7 @@ const CommonNav=()=>{
     const logout = () => {
 
         localStorage.clear();
-        navigate('/SignUp')
+        navigate('/')
     }
     return(
         <div>
@@ -22,10 +22,10 @@ const CommonNav=()=>{
 
             </ul>
                 :
-                <ul className='nav-ul nav-right'>
+                <ul className='navcom'>
+                    <li><Link to="/">Home</Link></li>
                     <li><Link to="/SignUp">SignUp</Link></li>
                     <li><Link to="/Login">Login</Link></li>
-
                 </ul>
             }
         </div>

@@ -1,71 +1,163 @@
-import React, {Component } from "react";
-import { Link } from "react-router-dom";
+import React, { useState, useEffect } from 'react';
+import { Link, useNavigate } from "react-router-dom";
 
-class ProductList extends Component {
-    
-        state = {
-            items: [],
-        };
+const ProductList = () => {
+    const [photo, setPhoto] = React.useState([]);
 
-    // ComponentDidMount is used to
-    // execute the code 
-    componentDidMount() {
-        fetch("http://localhost:5000/getphotos")
-            .then((res) => res.json())
-            .then(items=> this.setState({
-                    items }))
-}
+    useEffect(() => {
+        getalllist();
+    }, [])
 
-        
+    const getalllist = async () => {
+        let result = await fetch("http://localhost:5000/getphotos");
+        result = await result.json();
+        setPhoto(result)
+    }
+    console.warn("photo", photo);
 
-    render() {
-        
-        console.log(this.state.items)
-
-        return (
-        <div className = "product-list">
-            <h1 className="h1tag">All Photos list </h1> 
-                <ul>
-                 <li>Index no.</li>
-                 <li>User id</li>
-                 <li>Photo name</li>
-                 <li>Tags</li>
-                 <li>Photo</li>
-                 <li>Operation</li>
-             </ul>
-    {
-        this.state.items ? this.state.items.map((img,items) =>
-
-        (<ul key={img._id}>
-            <li>{items+1}</li>
-            <li>{img.userid}</li>
-            <li>{img.imgname}</li>
-            <li>{img.tag}</li>
-                 
-        <li>{img ? 
-        <img src="../categories/img.photo" alt={img.imgname}/>
-        :
-        <span>deleted</span>
-        }</li>
-        <li><button>Delete</button>
-            <Link to={"/update/"+img._id}>Update</Link>
-        </li>
-
-        </ul>
-        )):
-        <h3>loading</h3>
+    const deleteProduct = async(id)=>{
+        let result = await fetch(`http://localhost:5000/delete_photo/${id}`,{
+            method:"Delete"
+        });
+        result = await result.json()
+        if(result){
+            getalllist();
         }
+    }
+
+    return (
+        <div>
+            <h3>All Photos list</h3>
+            <table className='tablecss'>
+                <thead>
+                    <tr className='trcss'>
+                        <th>SR No.</th>
+                        {/* <th>userid</th> */}
+                        <th>img name</th>
+                        <th>tag</th>
+                        <th>category</th>
+                        <th>photo</th>
+                        <th>operation</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {
+                        photo.length > 0 ? photo.map((item, index) => (
+                            <tr key={item._id} className='trcss'>
+                                <td className='tdcss'>{index + 1}</td>
+                                {/* <td className='tdcss'>{item.userid}</td> */}
+                                <td className='tdcss'>{item.imgname}</td>
+                                <td className='tdcss'>{item.tag}</td>
+                                <td className='tdcss'>{item.category}</td>
+                                <td className='tdcss'>{item ?
+                                    <img src="../categories/" alt={item.imgname} />
+                                    :
+                                    <span>deleted</span>
+                                }</td>
+                                <td className='tdcss'><button onClick={()=>deleteProduct(item._id)}>Delete</button>
+                                <Link to={"/photoupdate/" + item._id}>Update</Link></td>
+                            </tr>
+                        ))
+                            : <tr> <td><strong>No Records
+                                Founds!</strong></td></tr>
+                    }
+                </tbody>
+            </table>
         </div>
-    );
+    )
 }
-}
+
+export default ProductList;
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+// import React, { Component } from "react";
+// import { Link } from "react-router-dom";
+
+// class ProductList extends Component {
+
+//     state = {
+//         items: [],
+//     };
+
+//     // ComponentDidMount is used to
+//     // execute the code 
+//     componentDidMount() {
+//         fetch("http://localhost:5000/getphotos")
+//             .then((res) => res.json())
+//             .then(items => this.setState({
+//                 items
+//             }))
+//     }
+
+
+//         render() {
+
+//             console.log(this.state.items)
+
+//             return (
+//                 <div className="product-list">
+//                     <h1 className="h1tag">All Photos list </h1>
+//                     <ul>
+//                         <li>Index no.</li>
+//                         <li>User id</li>
+//                         <li>Photo name</li>
+//                         <li>Tags</li>
+//                         <li>Photo</li>
+//                         <li>Operation</li>
+//                     </ul>
+//                     {
+//                         this.state.items ? this.state.items.map((img, items) =>
+
+//                         (<ul key={img._id}>
+//                             <li>{items + 1}</li>
+//                             <li>{img.userid}</li>
+//                             <li>{img.imgname}</li>
+//                             <li>{img.tag}</li>
+
+//                             <li>{img ?
+//                                 <img src="../categories/img.photo" alt={img.imgname} />
+//                                 :
+//                                 <span>deleted</span>
+//                             }</li>
+//                             <li><button>Delete</button>
+//                                 <Link to={"/photoupdate/" + img._id}>Update</Link>
+//                             </li>
+
+//                         </ul>
+//                         )) :
+//                             <h3>loading</h3>
+//                     }
+//                 </div>
+//             );
+//         }
+//     }
 
 
 
 // const ProductList =()=>{
 
 //      const [products, setProducts] = useState('');
-       
+
 //      useEffect(() => {
 //         getProducts();
 
@@ -77,7 +169,7 @@ class ProductList extends Component {
 //          setProducts(result);
 //          //console.warn(result);
 //      }
-    
+
 //         const deleteProduct = async(id)=>{
 //             let result = await fetch(`http://localhost:5000/delete_photo/${id}`,{
 //                 method:"Delete"
@@ -102,7 +194,7 @@ class ProductList extends Component {
 //                  <li>Photo</li>
 //                  <li>Operation</li>
 //              </ul>
-         
+
 //           {
 
 //             products.map((item,index)=>
@@ -128,10 +220,11 @@ class ProductList extends Component {
 //              )
 
 //           }
-            
+
 //          </div>
 
 //      )
 // }
 
-export default ProductList;
+// export default ProductList;
+

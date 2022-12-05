@@ -8,11 +8,11 @@ const Nav = () => {
 
 
     const getProducts = async () => {
-                  let result = await fetch('http://localhost:5000/getphotos');
-                  result = await result.json();
-                  setProducts(result);
-                  //console.warn(result);
-              }
+        let result = await fetch('http://localhost:5000/getphotos');
+        result = await result.json();
+        setProducts(result);
+        //console.warn(result);
+    }
 
     const searchHandle = async (event) => {
         let key = event.target.value;
@@ -22,7 +22,7 @@ const Nav = () => {
             if (result) {
                 setProducts(result)
             }
-        }else{
+        } else {
             getProducts();
         }
     }
@@ -30,11 +30,11 @@ const Nav = () => {
     const logout = () => {
 
         localStorage.clear();
-        navigate('/SignUp')
+        navigate('/')
     }
     return (
         <div>
-            
+
             {auth ? <ul className='nav-ul'>
                 <li className='logout'>Welcome,{JSON.parse(auth).fname} {JSON.parse(auth).lname}</li>
                 <li><Link to="/adminphotolist">All Photos</Link> </li>

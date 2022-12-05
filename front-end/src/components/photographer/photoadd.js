@@ -5,8 +5,9 @@ const AddProduct = () => {
     const navigate = useNavigate('');
     const [imgname, setName] = React.useState('');
     const [tag, setTag] = React.useState('');
-    const [cat, setCategory] = React.useState('');
+    const [category, setCategory] = React.useState('');
     const [error, setError] = React.useState(false);
+    const [photo, setPhoto] = React.useState('');
 
     useEffect(() => {
 
@@ -30,7 +31,7 @@ const AddProduct = () => {
         const userid = JSON.parse(localStorage.getItem("user"))._id;
         let result = await fetch("http://localhost:5000/addproduct", {
             method: 'post',
-            body: JSON.stringify({ imgname, cat, tag, userid }),
+            body: JSON.stringify({ imgname, category, tag, userid }),
             headers: {
                 'Content-Type': 'application/json'
             },
@@ -61,16 +62,12 @@ const AddProduct = () => {
             </select> */}
 
 
-            <select className='dropdownCategory'>
-                <option value={0}>
-                    Select Category
-                </option>
-
-                {cat.length > 0 ? (
-                    cat.map((item, index) => (
+            <select id='category' className='dropdownCategory' defaultValue="select category" value={category} onChange={(e) => setCategory(e.target.value)}>
+                {category.length > 0 ? (
+                    category.map((item, index) => (
                         <option
                             key={item._id}
-                            value={item._id}
+                            value={item.category}
                         >
                             {item.category}
                         </option>
@@ -82,7 +79,7 @@ const AddProduct = () => {
                 )}
             </select>
 
-            <form><input type="file" className="inputbox" name="upload_file" onChange={handleInputChange} ></input>
+            <form><input type="file" className="inputbox" name="upload_file"  ></input>
             </form>
 
             <button onClick={addProduct} type="button" className="btnsn">Add photo</button>

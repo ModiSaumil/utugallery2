@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react"
 import { useParams, useNavigate } from "react-router-dom";
 
-const Profilephotog = () => {
+const Viewerprofile = () => {
     const [enrollmentno, setEnro] = useState("");
     const [fname, setFname] = useState("");
     const [lname, setLname] = useState("");
@@ -62,4 +62,4 @@ const Profilephotog = () => {
 }
 
 
-export default Profilephotog;
+export default Viewerprofile;

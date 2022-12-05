@@ -19,7 +19,7 @@ const Navphotographer = () => {
     const logout = () => {
 
         localStorage.clear();
-        navigate('/SignUp')
+        navigate('/')
     }
     return (
         <div>
@@ -29,8 +29,8 @@ const Navphotographer = () => {
                 <li><Link to="/photolist">My Photos</Link> </li>
                 <li><Link to="/photoadd">Add Photos</Link> </li>
                 {/* <li><Link to="/update">UpdatePhotos</Link> </li> */}
-                
-                <li><Link to="/profileg">Profile</Link> </li>
+                {/* <Link to={"/update/"+img._id}>Update</Link> */}
+                <li><Link to={"/profileg/"+JSON.parse(auth)._id}>Profile</Link> </li>
                 <li ><Link onClick={logout} to="/SignUp">Logout</Link></li>
                 
             </ul>

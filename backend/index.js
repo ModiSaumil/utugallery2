@@ -10,19 +10,6 @@ const Productmul = require("./db/Productmul");
 const Category = require("./db/category");
 
 
-//add category
-app.post("/addcategory", async (req, resp) => {
-    let category = new Category(req.body);
-    let result = await category.save();
-    result = result.toObject();
-    resp.send(result);
-
-    if (result) {
-        console.log("category added!");
-    } else {
-        console.log("Error");
-    }
-})
 
 
 //registration
@@ -67,7 +54,7 @@ const category = require('./db/category');
 //photo storage path
 const storage = multer.diskStorage({
     destination: function (req, file, cb) {
-        cb(null, "C:/Users/saumi/OneDrive/Desktop/utugallery/backend/uploads/categories");
+        cb(null, "C:/Users/saumi/OneDrive/Desktop/utugallery/backend/uploads/categories/");
     },
     filename: function (req, file, cb) {
         cb(null,file.originalname);
@@ -81,7 +68,7 @@ const fileFilter = (req, file, callback) => {
         return callback(new Error("Only .png, .jpg and .jpeg format allowed !!"));
     }
     const filesize = parseInt(req.headers["content-length"]);
-    if (filesize > 1048576) {
+    if (filesize > 10000000) {
         return callback(new Error("File Size Big!"));
     }
     callback(null, true);
@@ -90,7 +77,7 @@ const fileFilter = (req, file, callback) => {
 var upload = multer({
     storage: storage,
     fileFilter: fileFilter,
-    filesize: 1048576
+    filesize: 10000000
 });
 
 //addphotos
@@ -109,8 +96,24 @@ app.post("/addproduct", upload.single("photo"), async (req, resp, next) => {
     resp.send(result);
 })
 
+//add category
+app.post("/addcategory", async (req, resp) => {
+    let category = new Category(req.body);
+    let result = await category.save();
+    result = result.toObject();
+    resp.send(result);
+
+    if (result) {
+        console.log("category added!");
+    } else {
+        console.log("Error");
+    }
+})
+
 //getallphotosbyuploadid (bakiiii and important need)
+
 //getallphotosbycategory (bakiiii and important need)
+
 //getallphotos
 app.get("/getphotos", async (req, resp, next) => {
     let products = await Product.find();
@@ -177,26 +180,30 @@ app.get("/getall", async (req, resp, next) => {
     }
 })
 
-//updateuser
-app.patch("/update_users/:id",async (req, resp,next) => {
-    try {
-        let id = req.params.id;
-        const update = req.body;
-        const options = { new: true };
-        const result = await User.findByIdAndUpdate(id,update,options);
-
-        if (result) {
-            resp.send(result);
-        } else {
-            resp.send('Not found');
-            return;
-        }
-    } catch (error) {
-        console.log(error.message);
+//update user fetch
+app.get("/update_users/:id",async(req, resp, next) =>{
+    let result = await User.findOne({_id:req.params.id})
+    if(result){
+        resp.send(result)
     }
+    else
+    {
+        resp.send({result:"no user found "})
+    } 
 })
 
-//updatecategory fetch
+//update user
+app.put("/update_users/:id",async (req, resp,next) => {
+    let result = await User.updateMany(
+        {_id:req.params.id},
+        {
+            $set : req.body
+        }
+    )
+    resp.send(result)
+})
+
+//update category fetch
 app.get("/update_category/:id",async(req, resp, next) =>{
     let result = await Category.findOne({_id:req.params.id})
     if(result){
@@ -220,7 +227,7 @@ app.put("/update_category/:id", async(req, resp ,next)=>{
 })
 
 
-//updatephotofetch
+//update photo fetch
 app.get("/update_photos/:id",async (req, resp,next) => {
     let result = await Product.findOne({_id:req.params.id})
     if(result)
@@ -233,7 +240,7 @@ app.get("/update_photos/:id",async (req, resp,next) => {
     }  
 })
 
-//updatephoto
+//update photo
 app.put("/update_photos/:id", async(req, resp ,next)=>{
     let result = await Product.updateOne(
         {_id:req.params.id},
@@ -263,9 +270,27 @@ app.patch("/delete_photos/:id",async (req, resp,next) => {
     }
 })
 
-//harddelete
+//hard delete photo
 app.delete("/delete_photo/:id",async (req, resp, next)=>{
     const result = await Product.deleteOne({_id:req.params.id})
+    resp.send(result); 
+})
+
+//hard delete category
+app.delete("/delete_category/:id",async (req, resp, next)=>{
+    const result = await Category.deleteOne({_id:req.params.id})
+    resp.send(result); 
+})
+
+//hard delete photographer
+app.delete("/delete_photographer/:id",async (req, resp, next)=>{
+    const result = await User.deleteOne({_id:req.params.id})
+    resp.send(result); 
+})
+
+//hard delete viewer
+app.delete("/delete_viewer/:id",async (req, resp, next)=>{
+    const result = await User.deleteOne({_id:req.params.id})
     resp.send(result); 
 })
 
