@@ -1,5 +1,6 @@
 import './App.css';
-import { BrowserRouter , Route ,Router,Routes } from 'react-router-dom';
+import { BrowserRouter, Route, Router, Routes } from 'react-router-dom';
+import { Helmet } from 'react-helmet';
 //------------------------------------------------------------------------------------------
 import Footer from './components/Footer';
 //------------------------------------------------------------------------------------------
@@ -30,6 +31,7 @@ import Privatecomponentviewer from './components/privatecomponentviewer';
 //------------------------------------------------------------------------------------------
 import Homepage from './components/viewer/homepage';
 import Viewerprofile from './components/viewer/viewerprofile';
+import AboutUS from './components/Aboutus';
 //------------------------------------------------------------------------------------------
 import Nav from './components/Nav';
 import Navphotographer from './components/navphotgrapher';
@@ -40,10 +42,11 @@ import CommonNav from './components/common_nav';
 function App() {
   return (
     <div className="App">
+     
       <BrowserRouter>
-      <CommonNav/>
-      <Routes>
-        {/* <Route element={<PrivateComponent />}> 
+        <CommonNav />
+        <Routes>
+          {/* <Route element={<PrivateComponent />}> 
         <Route path="/" element={<ProductList />}></Route>
         <Route path="/add" element={<AddProduct />}></Route> 
         <Route path="/update/:id" element={<UpdatePhoto/>}></Route>
@@ -51,37 +54,38 @@ function App() {
         <Route path="/profile/:id" element={<UpdateProfile />}></Route>
         </Route> */}
 
-        <Route element={<Privatecomponentadmin />}>
-        <Route path="/adminphotolist" element={<ProductList />}></Route>
-        <Route path="/categories" element={<Managecategory />}></Route>
-        <Route path="/photoglist" element={<Photographerlist />}></Route>
-        <Route path='/update/:id' element={<UpdatePhoto />}></Route>
-        <Route path='/Uppdate/:id' element={<Updatecategory />}></Route>
-        <Route path="/managecategories" element={<Displaycategory />}></Route>
-        <Route path="/viewerlist" element={<Viewerlist />}></Route>
-        <Route path="/logout" element={<h1>Logout</h1>}></Route>
-        </Route>
-        
-        <Route element={<Privatecomponentphotographer/>}>
-        <Route path='/photolist' element={<Photoview />}></Route>
-        <Route path='/photoadd' element={<AddProduct />}></Route>
-        <Route path='/photoupdate/:id' element={<Photoupdate />}></Route>
-        <Route path='/profileg/:id' element={<Profilephotog />}></Route>
-        <Route path="/logout" element={<h1>Logout</h1>}></Route>
-        </Route>
+          <Route element={<Privatecomponentadmin />}>
+            <Route path="/adminphotolist" element={<ProductList />}></Route>
+            <Route path="/categories" element={<Managecategory />}></Route>
+            <Route path="/photoglist" element={<Photographerlist />}></Route>
+            <Route path='/update/:id' element={<UpdatePhoto />}></Route>
+            <Route path='/Uppdate/:id' element={<Updatecategory />}></Route>
+            <Route path="/managecategories" element={<Displaycategory />}></Route>
+            <Route path="/viewerlist" element={<Viewerlist />}></Route>
+            <Route path="/logout" element={<h1>Logout</h1>}></Route>
+          </Route>
 
-        <Route element={<Privatecomponentviewer />}>
-        <Route path='/home' element={<Homepage />}></Route>
-        <Route path='/profilev/:id' element={<Viewerprofile />}></Route>
-        <Route path="/logout" element={<h1>Logout</h1>}></Route>
-        </Route>
-        
-        {/* <Route path='/main' element={<Pagemain />}></Route> */}
-        <Route path="/" element={<Homepage />}></Route>
-        <Route path="/SignUp" element={<SignUp />}></Route>
-        <Route path="/Login" element={<Login />}></Route>
-      </Routes>
-      
+          <Route element={<Privatecomponentphotographer />}>
+            <Route path='/photolist' element={<Photoview />}></Route>
+            <Route path='/photoadd' element={<AddProduct />}></Route>
+            <Route path='/photoupdate/:id' element={<Photoupdate />}></Route>
+            <Route path='/profileg/:id' element={<Profilephotog />}></Route>
+            <Route path="/logout" element={<h1>Logout</h1>}></Route>
+          </Route>
+
+          <Route element={<Privatecomponentviewer />}>
+            <Route path='/home' element={<Homepage />}></Route>
+            <Route path='/profilev/:id' element={<Viewerprofile />}></Route>
+            <Route path="/logout" element={<h1>Logout</h1>}></Route>
+          </Route>
+
+          {/* <Route path='/main' element={<Pagemain />}></Route> */}
+          <Route path="/" element={<Homepage />}></Route>
+          <Route path="/aboutus" element={<AboutUS />}></Route>
+          <Route path="/SignUp" element={<SignUp />}></Route>
+          <Route path="/Login" element={<Login />}></Route>
+        </Routes>
+
       </BrowserRouter>
       <Footer />
     </div>
