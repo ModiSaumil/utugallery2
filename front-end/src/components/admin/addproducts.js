@@ -13,10 +13,6 @@ const AddProduct = () => {
         getcategories();
     }, []);
 
-    const changeCase = (event) => {
-        event.preventDefault();
-        setTag(event.target.value.toUpperCase());
-    }
 
     const getcategories = async () => {
         let result = await fetch('http://localhost:5000/getcategories');
@@ -41,7 +37,11 @@ const AddProduct = () => {
         console.warn(result);
     }
 
-    const handleInputChange = () => {
+    const handleInputChange = (e) => {
+        setCategory(e.target.value)
+    }
+
+    const handlechange = () =>{
 
     }
 
@@ -51,7 +51,7 @@ const AddProduct = () => {
             <input className="inputbox" type="text" placeholder="enter image name"
                 value={imgname} onChange={(e) => setName(e.target.value)} />
             <input className="inputbox" type="text" placeholder="enter tag"
-                value={tag} onChange={(e) => setTag(e.target.value)} onMouseEnter={changeCase} />
+                value={tag} onChange={(e) => setTag(e.target.value)} />
 
             {/* <select id="cat" value={cat} defaultValue="Select category"
                 onChange={(e) => setCategory(e.target.value)} className="dropdownCategory">
@@ -62,29 +62,29 @@ const AddProduct = () => {
 
 
              <select className='dropdownCategory' id='cat' value={cat} defaultValue="select category"
-             onChange={(e) => setCategory(e.target.value)}>
+                onChange={(e) => {handleInputChange(e)}}>
                 <option value={0}>
                     Select Category
                 </option>
 
-                {cat.length > 0 ? 
+                {cat.length > 0 ? (
                     cat.map((item, index) => (
                         <option
                             key={item._id}
-                            value={item.category}
+                            value={item._id}
                         >
-                             
+
                             {item.category}
                         </option>
                     ))
-                 : (
-                    <option value={0}>
-                        No Records Founds!
-                    </option>
-                )}
+                   ) : (
+                        <option value={0}>
+                            No Records Founds!
+                        </option>
+                    )}
             </select> 
 
-            <form><input type="file" className="inputbox" name="upload_file" onChange={handleInputChange} ></input>
+            <form><input type="file" className="inputbox" name="upload_file" onChange={handlechange} ></input>
             </form>
 
             <button onClick={addProduct} type="button" className="btnsn">Add photo</button>

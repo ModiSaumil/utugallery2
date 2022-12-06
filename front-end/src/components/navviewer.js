@@ -44,7 +44,7 @@ const Navviewer = () => {
                 <li><Link to="/home">Home</Link></li>
                 <li><Link to={"/profilev/"+JSON.parse(auth)._id}>Profile</Link> </li>
                 <li ><Link onClick={logout} to="/SignUp">Logout</Link></li>
-                <input type="text" className="searchbox" placeholder="search any tags.."></input>
+                
 
             </ul>
                 :

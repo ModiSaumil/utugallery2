@@ -1,4 +1,5 @@
 .nav-ul {
+  font-family: monospace , auto;
   padding: 5px;
   background-color: rgb(18, 164, 187);
   font-size: initial;
@@ -11,12 +12,14 @@ a{
 }
 
 .navcom {
+  font-family: monospace , auto;
   padding: 5px;
   background-color: rgb(18, 164, 187);
   font-size: initial;
   margin: auto;
   height: 50px;
   text-align: right;
+
 }
 
 .h1tag{
@@ -105,9 +108,10 @@ margin-left: 15px;
 }
 
 .logon{
+  font-family: monospace , auto;
   height: 50px;
   float: left;
-  margin-top: 25px;
+  margin-top: 20px;
   margin-left: 15px;
 
 }
@@ -133,6 +137,27 @@ margin-left: 15px;
     border: none;
     background-color: lightgrey;
     font-size: medium;
+    
+}
+
+.animation{
+  display: block;
+  width: 20%;
+  box-sizing: border-box;
+  border: 2px solid #ccc;
+  border-radius: 4px;
+  font-size: 16px;
+  background-color: white;
+  background-image: url('../public/search.svg');
+  background-position: 10px 10px; 
+  background-repeat: no-repeat;
+  padding: 12px 20px 12px 40px;
+  transition: width 0.4s ease-in-out;
+  
+}
+
+.animation:focus{
+width: 100%;
 }
 
 .dropdown{
@@ -156,6 +181,7 @@ margin-left: 15px;
 }
 
 .nav-ul li{
+      
       display: inline-block;
       padding: 10px;
       text-align: right;     
@@ -165,6 +191,7 @@ margin-left: 15px;
   display: inline-block;
   padding: 10px;
   text-align: right;     
+  margin-right: 3%;
 }
 
 .logout{
@@ -364,3 +391,94 @@ box-shadow: 0px 35px 77px -17px rgba(0,0,0,0.64);
 
 /* =============== */
 
+.hero-section {
+  height: 63px;
+  background-image: linear-gradient(to bottom, rgb(255, 255, 255), rgb(0, 242, 255));
+  background-position: center;
+  background-size: cover;
+  background-repeat: no-repeat;
+  position: relative;
+  color: white;
+}
+
+.navi-logo{
+  color: black;
+  margin-left: 20px;
+}
+
+.con {
+  width: 90%;
+  margin: 0 auto;
+}
+
+.navi {
+  font-family: monospace , auto;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  
+}
+
+.navi .navi-links {
+  list-style-type: none;
+  display: flex;
+  align-items: center;
+ 
+}
+
+.navi .navi-links li {
+  transition: color .2s ease;
+  margin-right: 40px;
+}
+
+.navi .navi-links li:hover {
+  color: grey;
+  cursor: pointer;
+}
+
+.hero-text {
+  width: 450px;
+  position: absolute;
+  bottom: 40px;
+  right: 40px;
+  text-align: right;
+}
+
+.hero-welcome-text {
+  margin: 0;
+  padding: 0;
+  font-size: 34px;
+  margin-bottom: -10px;
+}
+
+.hero-country {
+  font-size: 100px;
+  margin: 0;
+  padding: 0;
+}
+
+.hero-text-description {
+  margin: 0;
+  padding-bottom: 20px;
+}
+
+/* .explore-btn {
+  text-decoration: none;
+  color: black;
+  box-shadow: 0 4px 30px #ffc500;
+  background: #eec500;
+  padding: 12px 30px;
+  border-radius: 4px;
+  border: none;
+  outline: none;
+  font-weight: normal;
+  text-transform: uppercase;
+  transition: all 0.2s ease-in-out;
+}
+
+.explore-btn:hover {
+  color: black;
+  cursor: pointer;
+  box-shadow: 0 4px 40px #ffd900;
+  background: #ffd900;
+} */

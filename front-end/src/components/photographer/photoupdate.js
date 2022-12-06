@@ -11,11 +11,7 @@ const UpdatePhoto = () => {
     const params = useParams();
     const navigate = useNavigate();
 
-    const changeCase=(event)=>{
-        event.preventDefault();
-        setTag(event.target.value.toUpperCase());
-    }
-
+    
     useEffect(()=>{
         getProductDetails();
     },[])
@@ -54,7 +50,7 @@ const UpdatePhoto = () => {
             <input className="inputbox" type="text" placeholder="enter image name"
                 value={imgname} onChange={(e) => setName(e.target.value)} />
             <input className="inputbox" type="text" placeholder="enter tag"
-                value={tag} onChange={(e) => setTag(e.target.value)} onMouseEnter={changeCase} />
+                value={tag} onChange={(e) => setTag(e.target.value)}  />
           <form><input value={photo} type="file" className="inputbox" name="upload_file" onChange={(e) => setPhoto(e.target.value)} ></input>
          </form>   <button onClick={updatephoto} type="button" className="btnsn">update photo</button>
 

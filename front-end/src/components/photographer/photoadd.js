@@ -14,10 +14,7 @@ const AddProduct = () => {
         getcategories();
     }, []);
 
-    const changeCase = (event) => {
-        event.preventDefault();
-        setTag(event.target.value.toUpperCase());
-    }
+
 
     const getcategories = async () => {
         let result = await fetch('http://localhost:5000/getcategories');
@@ -52,7 +49,7 @@ const AddProduct = () => {
             <input className="inputbox" type="text" placeholder="enter image name"
                 value={imgname} onChange={(e) => setName(e.target.value)} />
             <input className="inputbox" type="text" placeholder="enter tag"
-                value={tag} onChange={(e) => setTag(e.target.value)} onMouseEnter={changeCase} />
+                value={tag} onChange={(e) => setTag(e.target.value)} />
 
             {/* <select id="cat" value={cat} defaultValue="Select category"
                 onChange={(e) => setCategory(e.target.value)} className="dropdownCategory">

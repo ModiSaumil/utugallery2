@@ -15,9 +15,25 @@ const Homepage = () => {
     }
     console.warn("photo", photo);
 
+    const searchHandle = async (event) => {
+
+        let key = event.target.value;
+        if (key) {
+            let result = await fetch(`http://localhost:5000/searchtags/${key}`)
+            result = await result.json();
+            if (result) {
+                setPhoto(result);
+            }
+        }else{
+            getalllist();
+        }
+
+    }
+
     return (
 
         <div className="wrap">
+            <input className="animation" onChange={searchHandle} type="text" placeholder='enter any tag to search..'></input>
             {
                 photo.length > 0 ? photo.map((item, index) => (
                     <div className="tile">

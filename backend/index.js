@@ -301,6 +301,9 @@ app.get("/searchtags/:key", async (req, resp, next) => {
             "$or":[
                 {
                     "tag":{$regex:req.params.key}
+                },
+                {
+                    "imgname":{$regex:req.params.key}
                 }
             ]
         }
