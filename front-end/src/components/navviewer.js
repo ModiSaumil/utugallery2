@@ -43,9 +43,9 @@ const Navviewer = () => {
                 {/* <li><Link to="/profile">Profile</Link> </li> */}
                 <li><Link to="/home">Home</Link></li>
                 <li><Link to={"/profilev/"+JSON.parse(auth)._id}>Profile</Link> </li>
+                <li><Link to="/photoglistv">Photographers</Link></li>
                 <li ><Link onClick={logout} to="/SignUp">Logout</Link></li>
                 
-
             </ul>
                 :
                 <ul className='nav-ul nav-right'>

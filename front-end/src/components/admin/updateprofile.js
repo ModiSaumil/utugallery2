@@ -2,7 +2,7 @@ import React, { useState, useEffect } from "react"
 import { useParams, useNavigate } from "react-router-dom";
 
 const Profilephotog = () => {
-    const [enrollmentno, setEnro] = useState("");
+    // const [enrollmentno, setEnro] = useState("");
     const [fname, setFname] = useState("");
     const [lname, setLname] = useState("");
     const [contactno, setContact] = useState("");
@@ -23,7 +23,7 @@ const Profilephotog = () => {
         let result = await fetch(`http://localhost:5000/update_users/${params.id}`);
         result = await result.json();
 
-        setEnro(result.enrollmentno)
+        // setEnro(result.enrollmentno)
         setFname(result.fname)
         setLname(result.lname)
         setContact(result.contactno)
@@ -34,7 +34,7 @@ const Profilephotog = () => {
     const updateuser = async () => {
         let result = fetch(`http://localhost:5000/update_users/${params.id}`, {
             method: 'Put',
-            body: JSON.stringify({ enrollmentno, fname, lname, contactno, password, emailid }),
+            body: JSON.stringify({ fname, lname, contactno, password, emailid }),
             headers: {
                 'Content-Type': "application/json"
             }
@@ -48,7 +48,7 @@ const Profilephotog = () => {
     return (
         <div className="divsgn">
             <h1 className="register">Profile</h1>
-            <input className="inputbox" value={enrollmentno} onChange={(e) => setEnro(e.target.value)} type="text" placeholder="Enter Enrollment Number"></input>
+            {/* <input className="inputbox" value={enrollmentno} onChange={(e) => setEnro(e.target.value)} type="text" placeholder="Enter Enrollment Number"></input> */}
             <input className="inputbox" value={fname} onChange={(e) => setFname(e.target.value)} type="text" placeholder="Enter First Name"></input>
             <input className="inputbox" value={lname} onChange={(e) => setLname(e.target.value)} type="text" placeholder="Enter Last Name"></input>
             <input className="inputbox" value={contactno} onChange={(e) => setContact(e.target.value)} type="text" placeholder="Enter Contact Number"></input>

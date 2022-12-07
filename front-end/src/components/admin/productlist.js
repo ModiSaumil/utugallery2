@@ -3,10 +3,15 @@ import { Link, useNavigate } from "react-router-dom";
 
 const ProductList = () => {
     const [photo, setPhoto] = React.useState([]);
+    const navigate = useNavigate();
+
+ 
 
     useEffect(() => {
         getalllist();
+        
     }, [])
+
 
     const getalllist = async () => {
         let result = await fetch("http://localhost:5000/getphotos");

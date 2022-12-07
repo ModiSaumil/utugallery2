@@ -6,6 +6,8 @@ import Footer from './components/Footer';
 //------------------------------------------------------------------------------------------
 import Login from './components/Login';
 import SignUp from './components/SignUp';
+import Resetpass from './components/resetpasswrord';
+import Resetpasspage from './components/resetpasspage';
 //------------------------------------------------------------------------------------------
 import Managecategory from './components/admin/managecategory';
 import Displaycategory from './components/admin/displaycategories';
@@ -32,6 +34,7 @@ import Privatecomponentviewer from './components/privatecomponentviewer';
 import Homepage from './components/viewer/homepage';
 import Viewerprofile from './components/viewer/viewerprofile';
 import AboutUS from './components/Aboutus';
+import Photographerlistv from './components/viewer/photographerlistv';
 //------------------------------------------------------------------------------------------
 import Nav from './components/Nav';
 import Navphotographer from './components/navphotgrapher';
@@ -76,6 +79,7 @@ function App() {
           <Route element={<Privatecomponentviewer />}>
             <Route path='/home' element={<Homepage />}></Route>
             <Route path='/profilev/:id' element={<Viewerprofile />}></Route>
+            <Route path="/photoglistv" element={<Photographerlistv />}></Route>
             <Route path="/logout" element={<h1>Logout</h1>}></Route>
           </Route>
 
@@ -84,6 +88,8 @@ function App() {
           <Route path="/aboutus" element={<AboutUS />}></Route>
           <Route path="/SignUp" element={<SignUp />}></Route>
           <Route path="/Login" element={<Login />}></Route>
+          <Route path="/resetpasspage" element={<Resetpasspage />}></Route>
+          <Route path="/resetpass/" element={<Resetpass />}></Route>
         </Routes>
 
       </BrowserRouter>

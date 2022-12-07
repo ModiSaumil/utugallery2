@@ -7,12 +7,16 @@ const AddProduct = () => {
     const [tag, setTag] = React.useState('');
     const [cat, setCategory] = React.useState('');
     const [error, setError] = React.useState(false);
+    const [category, setCategoryname] = React.useState('');
+
+  
 
     useEffect(() => {
-
         getcategories();
-    }, []);
+        
+    }, [])
 
+    
 
     const getcategories = async () => {
         let result = await fetch('http://localhost:5000/getcategories');
@@ -26,7 +30,7 @@ const AddProduct = () => {
         const userid = JSON.parse(localStorage.getItem("user"))._id;
         let result = await fetch("http://localhost:5000/addproduct", {
             method: 'post',
-            body: JSON.stringify({ imgname, cat, tag, userid }),
+            body: JSON.stringify({ imgname, category, tag, userid }),
             headers: {
                 'Content-Type': 'application/json'
             },
@@ -34,11 +38,14 @@ const AddProduct = () => {
         result = await result.json()
         alert("image uploaded..")
         navigate('/photolist')
+        console.warn(category);
+        console.warn(cat);
         console.warn(result);
     }
 
     const handleInputChange = (e) => {
-        setCategory(e.target.value)
+        setCategoryname(e.target.value)
+        console.warn(category);
     }
 
     const handlechange = () =>{
@@ -53,16 +60,9 @@ const AddProduct = () => {
             <input className="inputbox" type="text" placeholder="enter tag"
                 value={tag} onChange={(e) => setTag(e.target.value)} />
 
-            {/* <select id="cat" value={cat} defaultValue="Select category"
-                onChange={(e) => setCategory(e.target.value)} className="dropdownCategory">
-                <option value="">Select category</option>
-                <option value={'1'}>navratri</option>
-                <option value={'2'}>newyear</option>
-            </select> */}
-
-
-             <select className='dropdownCategory' id='cat' value={cat} defaultValue="select category"
-                onChange={(e) => {handleInputChange(e)}}>
+            <select className='dropdown' id='cat' defaultValue="select category"
+                onChange={(e) => setCategoryname(e.target.value)}>
+            
                 <option value={0}>
                     Select Category
                 </option>
@@ -71,7 +71,7 @@ const AddProduct = () => {
                     cat.map((item, index) => (
                         <option
                             key={item._id}
-                            value={item._id}
+                            value={item.category}
                         >
 
                             {item.category}

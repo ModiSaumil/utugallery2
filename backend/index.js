@@ -8,7 +8,7 @@ app.use(express.json());
 app.use(cors());
 const Productmul = require("./db/Productmul");
 const Category = require("./db/category");
-
+const sharp = require('sharp')
 
 
 
@@ -50,11 +50,15 @@ const multer = require("multer");
 const { parse } = require("path");
 const Path = require("path");
 const category = require('./db/category');
+require('dotenv/config');
+var fs= require('fs');
+var bodyParser = require('body-parser');
+
 
 //photo storage path
 const storage = multer.diskStorage({
     destination: function (req, file, cb) {
-        cb(null, "C:/Users/saumi/OneDrive/Desktop/utugallery/backend/uploads/categories/");
+        cb(null, "C:/Users/saumi/OneDrive/Desktop/utugallery/backend/uploads/");
     },
     filename: function (req, file, cb) {
         cb(null,file.originalname);
@@ -81,9 +85,9 @@ var upload = multer({
 });
 
 //addphotos
-app.post("/addproduct", upload.single("photo"), async (req, resp, next) => {
+app.post("/addproduct", upload.single('photo'), async (req, resp, next) => {
     const path = req.file != undefined ? req.file.path.replace(/\\/g, "/") : "";
-
+    
     var model = {
         imgname: req.body.imgname,
         userid: req.body.userid,
@@ -110,9 +114,46 @@ app.post("/addcategory", async (req, resp) => {
     }
 })
 
-//getallphotosbyuploadid (bakiiii and important need)
+//getuserdetailfromemailid
+app.get("/getUserbyemailid/:emailid", async (req, resp, next) => {
+    let user = await User.find({emailid:req.params.emailid})
+    if (user.length > 0) {
+        resp.send(user)
+    } else {
+        resp.send({ result: "no user found" })
+    }
+})
 
-//getallphotosbycategory (bakiiii and important need)
+//updateuserbyemailid
+app.put("/updateUserbyemailid/:emailid", async(req, resp ,next)=>{
+    let result = await User.updateOne(
+        {emailid:req.params.emailid},
+        {
+            $set : req.body
+        }
+    )
+    resp.send(result)
+})
+
+//getallphotosbyuploadid 
+app.get("/getPhotosbyuploadid/:userid", async (req, resp, next) => {
+    let products = await Product.find({userid:req.params.userid})
+    if (products.length > 0) {
+        resp.send(products)
+    } else {
+        resp.send({ result: "no Product found" })
+    }
+})
+
+//getallphotosbycategory 
+app.get("/getPhotosbycat/:category", async (req, resp, next) => {
+    let products = await Product.find({category:req.params.category})
+    if (products.length > 0) {
+        resp.send(products)
+    } else {
+        resp.send({ result: "no Product found" })
+    }
+})
 
 //getallphotos
 app.get("/getphotos", async (req, resp, next) => {
@@ -304,12 +345,38 @@ app.get("/searchtags/:key", async (req, resp, next) => {
                 },
                 {
                     "imgname":{$regex:req.params.key}
+                },
+                {
+                    "category":{$regex:req.params.key}
                 }
             ]
         }
     );
     if (prod.length > 0) {
         resp.send(prod)
+    } else {
+        resp.send({ result: "no keyword found" })
+    }
+})
+
+app.get("/searchuser/:key", async (req, resp, next) => {
+    let user = await User.find(
+        {
+            "$or":[
+                {
+                    "role":"photog"
+                },
+                {
+                    "fname":{$regex:req.params.key}
+                },
+                {
+                    "emailid":{$regex:req.params.key}
+                },
+            ]
+        }
+    );
+    if (user.length > 0) {
+        resp.send(user)
     } else {
         resp.send({ result: "no keyword found" })
     }
@@ -333,10 +400,5 @@ app.get("/searchtags/:key", async (req, resp, next) => {
 //     });
 //     await productmul.save();
 // })
-
-
-
-
-
 
 app.listen(5000)

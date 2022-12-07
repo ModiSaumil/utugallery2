@@ -3,9 +3,11 @@ import { Link, useNavigate } from "react-router-dom";
 
 const Homepage = () => {
     const [photo, setPhoto] = React.useState([]);
-
+    const navigate=useNavigate();
+ 
     useEffect(() => {
         getalllist();
+        
     }, [])
 
     const getalllist = async () => {

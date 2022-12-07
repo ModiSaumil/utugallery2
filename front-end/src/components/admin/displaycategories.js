@@ -3,10 +3,14 @@ import { Link, useNavigate } from "react-router-dom";
 
 const Displaycategory = () => {
     const [photo, setPhoto] = React.useState([]);
+    const navigate = useNavigate();
+
 
     useEffect(() => {
         getalllist();
+       
     }, [])
+
 
     const getalllist = async () => {
         let result = await fetch("http://localhost:5000/getcategories");

@@ -3,9 +3,12 @@ import { Link, useNavigate } from "react-router-dom";
 
 const Viewerlist = () => {
     const [photo, setPhoto] = React.useState([]);
+    const navigate = useNavigate();
 
+   
     useEffect(() => {
         getalllist();
+        
     }, [])
 
     const getalllist = async () => {
@@ -25,9 +28,26 @@ const Viewerlist = () => {
         }
     }
 
+    const searchHandle = async (event) => {
+
+        let key = event.target.value;
+        if (key) {
+            let result = await fetch(`http://localhost:5000/searchuser/${key}`)
+            result = await result.json();
+            if (result) {
+                setPhoto(result);
+            }
+        }else{
+            getalllist();
+        }
+
+    }
+
     return (
         <div>
             <h1 className='h1tag'>All Viewers list</h1>
+            <input className="animation" onChange={searchHandle} type="text" placeholder='enter emailid to search..'></input>
+
             <table className='tablecss'>
                 <thead>
                     <tr className='trcss'>
@@ -35,7 +55,7 @@ const Viewerlist = () => {
                         <th>userid</th>
                         <th>First name</th>
                         <th>Last name</th>
-                        <th>enrollment no</th>
+                        {/* <th>enrollment no</th> */}
                         <th>contact no</th>
                         <th>email id</th>
                         <th>operation</th>
@@ -49,7 +69,7 @@ const Viewerlist = () => {
                                 <td className='tdcss'>{item._id}</td>
                                 <td className='tdcss'>{item.fname}</td>
                                 <td className='tdcss'>{item.lname}</td>
-                                <td className='tdcss'>{item.enrollmentno}</td>
+                                {/* <td className='tdcss'>{item.enrollmentno}</td> */}
                                 <td className='tdcss'>{item.emailid}</td>
                                 <td className='tdcss'>{item.contactno}</td>
                                 

@@ -12,9 +12,13 @@ const UpdatePhoto = () => {
     const navigate = useNavigate();
 
     
-    useEffect(()=>{
+   
+   
+
+    useEffect(() => {
         getProductDetails();
-    },[])
+        
+    }, [])
 
     const getProductDetails = async ()=>{
         console.warn(params)

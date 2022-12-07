@@ -1,15 +1,30 @@
 import React, { useEffect, useState } from "react"
-import { useNavigate } from 'react-router-dom'
+import { Link, useNavigate } from 'react-router-dom'
 
 const Login = () => {
     const [password, setPassword] = useState("");
     const [emailid, setEmail] = useState("");
     const [error, setError] = useState(false);
     const navigate = useNavigate();
+    
     useEffect(() => {
         const auth = localStorage.getItem('user');
-        if (auth) {
-            navigate("/")
+        console.log(auth);
+        if(auth)
+        {
+            if(auth==="admin")
+            {
+                navigate("/adminphotolist")
+            }
+            else if (auth==="viewer") {
+                navigate("/home")
+            }
+            else if (auth==="photog") {
+                navigate("/photoadd")
+            }
+            else {
+                navigate("/Login")
+            }
         }
     }, [navigate])
     
@@ -114,7 +129,7 @@ const Login = () => {
 
             <input className="inputbox" type="password" placeholder="Enter Password" onChange={(e) => setPassword(e.target.value)} value={password} required></input>
             {error && !password && <span className="invalid-input" style={{ fontWeight: 'bold', color: 'red' }}>Please fill out this field!</span>}
-
+            {/* <p><Link to="/resetpasspage">Forgot password ?</Link></p> */}
             <button className="btnsn" onClick={handleLogin} type="button">Login</button>
 
         </div>

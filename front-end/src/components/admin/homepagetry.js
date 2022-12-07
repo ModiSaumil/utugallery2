@@ -29,7 +29,7 @@ const Homepagetry = () => {
                         </div>
                     </div>
                 ))
-                    : <tr> <td><strong>No Records
+                    : <tr><td><strong>No Records
                         Founds!</strong></td></tr>
             }
         </div>

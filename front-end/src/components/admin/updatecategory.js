@@ -10,10 +10,12 @@ const Updatecategory = () => {
     const navigate = useNavigate();
     const [category, setCategory] = React.useState('');
  
-
-    useEffect(()=>{
+    useEffect(() => {
         getcategoriesdetails();
-    },[])
+        
+    }, [])
+
+    
 
     const getcategoriesdetails = async ()=>{
         console.warn(params)

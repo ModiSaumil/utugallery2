@@ -5,6 +5,9 @@ const Managecategory = () => {
     const navigate = useNavigate('');
     const [category, setCat] = React.useState('');
   
+    
+
+
 
     const addCategory = async () => {
         

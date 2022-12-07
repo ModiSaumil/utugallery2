@@ -3,13 +3,19 @@ import { Link, useNavigate } from "react-router-dom";
 
 const ProductList = () => {
     const [photo, setPhoto] = React.useState([]);
+    const   navigate = useNavigate();
 
     useEffect(() => {
         getalllist();
+       
     }, [])
 
+
+
+
     const getalllist = async () => {
-        let result = await fetch("http://localhost:5000/getphotos");
+        const userid = JSON.parse(localStorage.getItem("user"))._id;
+        let result = await fetch(`http://localhost:5000/getPhotosbyuploadid/${userid}`);
         result = await result.json();
         setPhoto(result)
     }
@@ -25,9 +31,25 @@ const ProductList = () => {
         }
     }
 
+    const searchHandle = async (event) => {
+
+        let key = event.target.value;
+        if (key) {
+            let result = await fetch(`http://localhost:5000/searchtags/${key}`)
+            result = await result.json();
+            if (result) {
+                setPhoto(result);
+            }
+        }else{
+            getalllist();
+        }
+
+    }
+
     return (
         <div>
             <h3>All Photos list</h3>
+            <input className="animation" onChange={searchHandle} type="text" placeholder='enter to search..'></input>
             <table className='tablecss'>
                 <thead>
                     <tr className='trcss'>

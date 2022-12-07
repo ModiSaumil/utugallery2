@@ -4,7 +4,7 @@ import { Link, useNavigate, useParams } from 'react-router-dom';
 
 
 const SignUp = () => {
-    const [enrollmentno, setEnro] = useState("");
+    // const [enrollmentno, setEnro] = useState("");
     const [fname, setFname] = useState("");
     const [lname, setLname] = useState("");
     const [contactno, setContact] = useState("");
@@ -12,7 +12,7 @@ const SignUp = () => {
     const [emailid, setEmail] = useState("");
     const [role, setRole] = useState("");
     const [error, setError] = useState(false);
-    const [EnroError, setEnroError] = useState('');
+    // const [EnroError, setEnroError] = useState('');
     const [fnameError, setFirstnameError] = useState('');
     const [lnameError, setLastnameError] = useState('');
     const [emailidError, setEmailError] = useState('');
@@ -29,33 +29,31 @@ const SignUp = () => {
     useEffect(() => {
         const auth = localStorage.getItem("role");
         console.log(auth);
-        // if(auth)
-        // {
-        //     if(auth==="admin")
-        //     {
-        //         navigate("/adminphotolist")
-        //     }
-        //     else if (auth==="viewer") {
-        //         navigate("/home")
-        //     }
-        //     else if (auth==="photog") {
-        //         navigate("/photoadd")
-        //     }
-        //     else {
-        //         navigate("/Login")
-        //     }
-        // }
-
-
+        if(auth)
+        {
+            if(auth==="admin")
+            {
+                navigate("/adminphotolist")
+            }
+            else if (auth==="viewer") {
+                navigate("/home")
+            }
+            else if (auth==="photog") {
+                navigate("/photoadd")
+            }
+            else {
+                navigate("/Login")
+            }
+        }
     })
 
 
     const collectData = async () => {
-        console.warn(enrollmentno, fname, lname, emailid, password, contactno, role);
+        console.warn(fname, lname, emailid, password, contactno, role);
 
         let result = await fetch('http://localhost:5000/registration', {
             method: 'post',
-            body: JSON.stringify({ enrollmentno, fname, lname, emailid, password, contactno, role }),
+            body: JSON.stringify({ fname, lname, emailid, password, contactno, role }),
             headers: {
                 'Content-Type': 'application/json'
             },
@@ -189,15 +187,15 @@ const SignUp = () => {
     // }
 
     //validate enrollment no
-    const validateEnrono = (e) => {
-        var pattern = new RegExp(/^[789]\d{9}$/);
-        if (!pattern.test(enrollmentno)) {
-            setEnroError('Only 10 numbers are allowed!');
-            return;
-        } else {
-            setEnroError('');
-        }
-    };
+    // const validateEnrono = (e) => {
+    //     var pattern = new RegExp(/^[789]\d{9}$/);
+    //     if (!pattern.test(enrollmentno)) {
+    //         setEnroError('Only 10 numbers are allowed!');
+    //         return;
+    //     } else {
+    //         setEnroError('');
+    //     }
+    // };
 
     //validate first name
     const validateFirstName = (e) => {
@@ -271,28 +269,28 @@ const SignUp = () => {
     return (
         <div className="divsgn">
             <h1 className="register">Register</h1>
-            <input className="inputbox" value={enrollmentno} onChange={(e) => { setEnro(e.target.value); validateEnrono(); }} type="text" placeholder="Enter Enrollment Number" required></input>
-            <span
-                className='invalid-input'
-                style={{
-                    fontWeight: 'bold',
-                    color: 'red'
-                }}
-            >
-                {EnroError}
-            </span>
+            {/* <input className="inputbox" value={enrollmentno} onChange={(e) => { setEnro(e.target.value); validateEnrono(); }} type="text" placeholder="Enter Enrollment Number" required></input> */}
+            {/* <span */}
+                {/* className='invalid-input' */}
+                {/* style={{ */}
+                    {/* fontWeight: 'bold', */}
+                    {/* color: 'red' */}
+                {/* }} */}
+            {/* > */}
+                {/* {EnroError} */}
+            {/* </span> */}
             {/* print empty field message */}
-            {error && !enrollmentno && (
-                <span
-                    className='invalid-input'
-                    style={{
-                        fontWeight: 'bold',
-                        color: 'red'
-                    }}
-                >
-                    Please fill out this field!
-                </span>
-            )}
+            {/* {error && !enrollmentno && ( */}
+                {/* <span */}
+                    {/* className='invalid-input' */}
+                    {/* style={{ */}
+                        {/* fontWeight: 'bold', */}
+                        {/* color: 'red' */}
+                    {/* }} */}
+                {/* > */}
+                    {/* Please fill out this field! */}
+                {/* </span> */}
+            {/* )} */}
 
 
             <input className="inputbox" value={fname} onChange={(e) => { setFname(e.target.value); validateFirstName(); }} type="text" placeholder="Enter First Name" required></input>
