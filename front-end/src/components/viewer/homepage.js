@@ -16,6 +16,7 @@ const Homepage = () => {
         result = await result.json();
         console.log(result)
         setPhoto(result)
+        //http://192.168.1.103:5000/
         // localStorage.setItem("photos", JSON.stringify(result));
         // // const userid = JSON.parse(localStorage.getItem("user"))._id;
         // const photol = JSON.parse(localStorage.getItem('photos')).photo;
@@ -46,7 +47,7 @@ const Homepage = () => {
             {
                 photos.length > 0 ? photos.map((item, index) => (
                     <div className="tile">
-                        <img src={item.photo} alt="aree yaarrrr" />
+                        <img src={`http://localhost:5000/${item.photo}`} alt="aree yaarrrr" />
                         <div className="text">
                             <h1>{item.imgname}</h1>
                             <h2 className="animate-text">{item.category}</h2>

@@ -65,14 +65,14 @@ const ProductList = () => {
                 <tbody>
                     {
                         photo.length > 0 ? photo.map((item, index) => (
-                            <tr key={item._id} className='trcss'>
+                            <tr key={item._id} className='trcss img'>
                                 <td className='tdcss'>{index + 1}</td>
                                 {/* <td className='tdcss'>{item.userid}</td> */}
                                 <td className='tdcss'>{item.imgname}</td>
                                 <td className='tdcss'>{item.tag}</td>
                                 <td className='tdcss'>{item.category}</td>
                                 <td className='tdcss'>{item ?
-                                    <img src="../categories/" alt={item.imgname} />
+                                    <img src={`http://localhost:5000/${item.photo}`} alt={item.imgname} />
                                     :
                                     <span>deleted</span>
                                 }</td>

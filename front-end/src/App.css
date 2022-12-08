@@ -53,6 +53,25 @@ a {
   border: 1px solid;
 }
 
+
+.tdcss img{
+  height:50px;
+  width: 50px;
+  border: 1px solid #ddd;
+  border-radius: 4px;
+  padding: 5px;
+
+}
+
+/* .sizei{
+  border: 1px solid #ddd;
+  border-radius: 4px;
+  padding: 5px;
+  width: 10px;
+  height:10px;
+} */
+
+
 .photographerlist ul li {
   display: inline-block;
   border: 1px solid #61dafb;

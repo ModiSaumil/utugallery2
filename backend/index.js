@@ -9,7 +9,7 @@ app.use(cors());
 const Productmul = require("./db/Productmul");
 const Category = require("./db/category");
 const sharp = require('sharp')
-
+app.use("/uploads", express.static("uploads"));
 
 
 //registration
