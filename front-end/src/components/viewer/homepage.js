@@ -2,20 +2,27 @@ import React, { useState, useEffect } from 'react';
 import { Link, useNavigate } from "react-router-dom";
 
 const Homepage = () => {
-    const [photo, setPhoto] = React.useState([]);
-    const navigate=useNavigate();
- 
+    const [photos, setPhoto] = React.useState([]);
+    const [img , setImg] = React.useState([]) 
+    const navigate = useNavigate();
+
     useEffect(() => {
         getalllist();
-        
+
     }, [])
 
     const getalllist = async () => {
         let result = await fetch("http://localhost:5000/getphotos");
         result = await result.json();
+        console.log(result)
         setPhoto(result)
+        // localStorage.setItem("photos", JSON.stringify(result));
+        // // const userid = JSON.parse(localStorage.getItem("user"))._id;
+        // const photol = JSON.parse(localStorage.getItem('photos')).photo;
+        // setImg(photol)
+        // console.warn(photo)
     }
-    console.warn("photo", photo);
+    console.warn("photo", photos);
 
     const searchHandle = async (event) => {
 
@@ -26,7 +33,7 @@ const Homepage = () => {
             if (result) {
                 setPhoto(result);
             }
-        }else{
+        } else {
             getalllist();
         }
 
@@ -37,9 +44,9 @@ const Homepage = () => {
         <div className="wrap">
             <input className="animation" onChange={searchHandle} type="text" placeholder='enter any tag to search..'></input>
             {
-                photo.length > 0 ? photo.map((item, index) => (
+                photos.length > 0 ? photos.map((item, index) => (
                     <div className="tile">
-                        <img src={item.photo} />
+                        <img src={item.photo} alt="ek var jova dene yaarrrr" />
                         <div className="text">
                             <h1>{item.imgname}</h1>
                             <h2 className="animate-text">{item.category}</h2>
@@ -47,8 +54,8 @@ const Homepage = () => {
                         </div>
                     </div>
                 ))
-                    : <tr> <td><strong>No Records
-                        Founds!</strong></td></tr>
+                    : <p><strong>No Records
+                        Founds!</strong></p>
             }
         </div>
 
