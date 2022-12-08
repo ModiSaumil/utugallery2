@@ -29,9 +29,8 @@ const AboutUS = () => {
 
 
     return (
-        <div>hello !
+        <div>
             <h1>Uka Tarsadiya University Photo Gallery</h1>
-
         </div>
     )
 }
