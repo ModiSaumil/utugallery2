@@ -50,7 +50,7 @@ const CommonNav = () => {
                 alt='logo'
                 className='logo'
                 src='../logo.png' />
-            <h3 className='logon' name='logo'>UTU Photo Gallery</h3>
+            <h3 className='logon' name='logo'>UTU Gallery</h3>
             {auth ? <ul className='nav-ul'>
 
 

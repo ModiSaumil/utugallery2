@@ -56,7 +56,7 @@ const Homepage = () => {
                     </div>
                 ))
                     : <p><strong>No Records
-                        Founds!</strong></p>
+                        Found!</strong></p>
             }
         </div>
 

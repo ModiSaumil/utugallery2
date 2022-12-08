@@ -30,7 +30,7 @@ const Homepagetry = () => {
                     </div>
                 ))
                     : <tr><td><strong>No Records
-                        Founds!</strong></td></tr>
+                        Found!</strong></td></tr>
             }
         </div>
 

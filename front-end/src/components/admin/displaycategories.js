@@ -37,7 +37,7 @@ const Displaycategory = () => {
                     <tr className='trcss'>
                         <th>SR No.</th>
                         <th>Category</th>
-                        <th>Operation</th>
+                        <th>Operations</th>
                     </tr>
                 </thead>
                 <tbody>
@@ -51,7 +51,7 @@ const Displaycategory = () => {
                             </tr>
                         ))
                             : <tr> <td><strong>No Records
-                                Founds!</strong></td></tr>
+                                Found!</strong></td></tr>
                     }
                 </tbody>
             </table>

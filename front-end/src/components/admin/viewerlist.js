@@ -52,13 +52,13 @@ const Viewerlist = () => {
                 <thead>
                     <tr className='trcss'>
                         <th>SR No.</th>
-                        <th>userid</th>
+                        <th>User id</th>
                         <th>First name</th>
                         <th>Last name</th>
                         {/* <th>enrollment no</th> */}
-                        <th>contact no</th>
-                        <th>email id</th>
-                        <th>operation</th>
+                        <th>Contact no</th>
+                        <th>Email id</th>
+                        <th>Operations</th>
                     </tr>
                 </thead>
                 <tbody>

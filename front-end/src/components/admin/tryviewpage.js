@@ -22,12 +22,12 @@ const Tryviewpage = () => {
                 <thead>
                     <tr className='trcss'>
                         <th>SR No.</th>
-                        <th>userid</th>
-                        <th>img name</th>
-                        <th>tag</th>
+                        <th>User id</th>
+                        <th>Image name</th>
+                        <th>Tag</th>
                         
-                        <th>photo</th>
-                        <th>operation</th>
+                        <th>Image</th>
+                        <th>Operations</th>
                     </tr>
                 </thead>
                 <tbody>

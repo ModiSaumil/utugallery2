@@ -71,7 +71,7 @@ const AddProduct = () => {
                     ))
                 ) : (
                     <option value={0}>
-                        No Records Founds!
+                        No Records Found!
                     </option>
                 )}
             </select>

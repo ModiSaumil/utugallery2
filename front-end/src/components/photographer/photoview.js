@@ -55,11 +55,11 @@ const ProductList = () => {
                     <tr className='trcss'>
                         <th>SR No.</th>
                         {/* <th>userid</th> */}
-                        <th>img name</th>
-                        <th>tag</th>
-                        <th>category</th>
-                        <th>photo</th>
-                        <th>operation</th>
+                        <th>Image name</th>
+                        <th>Tag</th>
+                        <th>Category</th>
+                        <th>Images</th>
+                        <th>Operations</th>
                     </tr>
                 </thead>
                 <tbody>
@@ -81,7 +81,7 @@ const ProductList = () => {
                             </tr>
                         ))
                             : <tr> <td><strong>No Records
-                                Founds!</strong></td></tr>
+                                Found!</strong></td></tr>
                     }
                 </tbody>
             </table>

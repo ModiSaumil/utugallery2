@@ -39,8 +39,8 @@ const Photographerlistv = () => {
                         <th>First name</th>
                         <th>Last name</th>
                         {/* <th>enrollment no</th> */}
-                        <th>email id</th>
-                        <th>contact no</th>
+                        <th>Email id</th>
+                        <th>Contact no</th>
                         
                         {/* <th>operation</th> */}
                     </tr>
