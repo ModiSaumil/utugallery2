@@ -22,7 +22,7 @@ const Homepage = () => {
         // setImg(photol)
         // console.warn(photo)
     }
-    console.warn("photo", photos);
+    // console.warn("photo", photos);
 
     const searchHandle = async (event) => {
 
@@ -46,7 +46,7 @@ const Homepage = () => {
             {
                 photos.length > 0 ? photos.map((item, index) => (
                     <div className="tile">
-                        <img src={item.photo} alt="ek var jova dene yaarrrr" />
+                        <img src={item.photo} alt="aree yaarrrr" />
                         <div className="text">
                             <h1>{item.imgname}</h1>
                             <h2 className="animate-text">{item.category}</h2>

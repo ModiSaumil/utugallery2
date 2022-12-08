@@ -58,7 +58,7 @@ var bodyParser = require('body-parser');
 //photo storage path
 const storage = multer.diskStorage({
     destination: function (req, file, cb) {
-        cb(null, "C:/Users/saumi/OneDrive/Desktop/utugallery/backend/uploads/");
+        cb(null, "./uploads/");
     },
     filename: function (req, file, cb) {
         cb(null,file.originalname);
