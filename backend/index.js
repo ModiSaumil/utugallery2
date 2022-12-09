@@ -382,6 +382,17 @@ app.get("/searchuser/:key", async (req, resp, next) => {
     }
 })
 
+//getphotobyphotoid
+app.get("/getPhotosbyid/:id", async (req, resp, next) => {
+    let products = await Product.find({_id:req.params.id})
+    if (products.length > 0) {
+        resp.send(products)
+    } else {
+        resp.send({ result: "no Photo found" })
+    }
+})
+
+
 //insert multiple photos
 // app.post("/addproductmultiple", upload.array("files"), async (req, resp, next) => {
 //     const path = req.file != undefined ? req.file.path.replace(/\\/g, "/") : "";

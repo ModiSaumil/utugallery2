@@ -23,6 +23,7 @@ import Homepagetry from './components/admin/homepagetry';
 import Photoadd from './components/photographer/photoadd';
 import Photoupdate from './components/photographer/photoupdate';
 import Photoview from './components/photographer/photoview';
+import Photoviewfull from './components/photographer/photoviewfullscree';
 import Tryviewpage from './components/admin/tryviewpage';
 import Profilephotog from './components/photographer/profilephotog';
 //------------------------------------------------------------------------------------------
@@ -73,6 +74,8 @@ function App() {
             <Route path='/photoadd' element={<AddProduct />}></Route>
             <Route path='/photoupdate/:id' element={<Photoupdate />}></Route>
             <Route path='/profileg/:id' element={<Profilephotog />}></Route>
+            <Route path='/photoviewf/:id' element={<Photoviewfull />}></Route>
+            
             <Route path="/logout" element={<h1>Logout</h1>}></Route>
           </Route>
 

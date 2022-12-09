@@ -71,13 +71,17 @@ const ProductList = () => {
                                 <td className='tdcss'>{item.imgname}</td>
                                 <td className='tdcss'>{item.tag}</td>
                                 <td className='tdcss'>{item.category}</td>
-                                <td className='tdcss'>{item ?
+                                
+                                <td className='tdcss'>{item ? 
                                     <img src={`http://localhost:5000/${item.photo}`} alt={item.imgname} />
+                                    
                                     :
                                     <span>deleted</span>
                                 }</td>
-                                <td className='tdcss'><button onClick={()=>deleteProduct(item._id)}>Delete</button>
-                                <Link to={"/photoupdate/" + item._id}>Update</Link></td>
+                                <td className='tdcss'>
+                                <button onClick={()=>deleteProduct(item._id)}>Delete</button>
+                                <button><Link to={"/photoupdate/" + item._id}>Update</Link></button>
+                                <button><Link to={"/photoviewf/" + item._id}>View</Link></button></td>
                             </tr>
                         ))
                             : <tr> <td><strong>No Records
