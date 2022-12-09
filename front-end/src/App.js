@@ -33,6 +33,7 @@ import Privatecomponentphotographer from './components/privatecomponentphotograp
 import Privatecomponentviewer from './components/privatecomponentviewer';
 //------------------------------------------------------------------------------------------
 import Homepage from './components/viewer/homepage';
+import Homepagec from './components/homepagec';
 import Viewerprofile from './components/viewer/viewerprofile';
 import AboutUS from './components/Aboutus';
 import Photographerlistv from './components/viewer/photographerlistv';
@@ -66,6 +67,7 @@ function App() {
             <Route path='/Uppdate/:id' element={<Updatecategory />}></Route>
             <Route path="/managecategories" element={<Displaycategory />}></Route>
             <Route path="/viewerlist" element={<Viewerlist />}></Route>
+            <Route path='/photoviewa/:id' element={<Photoviewfull />}></Route>
             <Route path="/logout" element={<h1>Logout</h1>}></Route>
           </Route>
 
@@ -83,11 +85,13 @@ function App() {
             <Route path='/home' element={<Homepage />}></Route>
             <Route path='/profilev/:id' element={<Viewerprofile />}></Route>
             <Route path="/photoglistv" element={<Photographerlistv />}></Route>
+            <Route path='/photoviewv/:id' element={<Photoviewfull />}></Route>
             <Route path="/logout" element={<h1>Logout</h1>}></Route>
           </Route>
 
           {/* <Route path='/main' element={<Pagemain />}></Route> */}
-          <Route path="/" element={<Homepage />}></Route>
+          <Route path="/" element={<Homepagec />}></Route>
+          <Route path='/photoviewc/:id' element={<Photoviewfull />}></Route>
           <Route path="/aboutus" element={<AboutUS />}></Route>
           <Route path="/SignUp" element={<SignUp />}></Route>
           <Route path="/Login" element={<Login />}></Route>

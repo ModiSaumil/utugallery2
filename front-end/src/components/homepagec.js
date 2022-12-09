@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { Link, useNavigate } from "react-router-dom";
 
-const Homepage = () => {
+const Homepagec = () => {
     const [photos, setPhoto] = React.useState([]);
     const [img , setImg] = React.useState([]) 
     const navigate = useNavigate();
@@ -52,7 +52,7 @@ const Homepage = () => {
                             <h1>{item.imgname}</h1>
                             <h2 className="animate-text">{item.category}</h2>
                             <p className="animate-text">{item.tag}</p>
-                            <button className="animate-text"><Link to={"/photoviewv/" + item._id}>View</Link></button>
+                            <button className="animate-text"><Link to={"/photoviewc/" + item._id}>View</Link></button>
                         </div>
                        
                     </div>
@@ -66,4 +66,4 @@ const Homepage = () => {
     )
 }
 
-export default Homepage;
+export default Homepagec;

@@ -61,7 +61,10 @@ const ProductList = () => {
                                     <span>deleted</span>
                                 }</td>
                                 <td className='tdcss'><button onClick={()=>deleteProduct(item._id)}>Delete</button>
-                                <Link to={"/update/" + item._id}>Update</Link></td>
+                                <button><Link to={"/update/" + item._id}>Update</Link></button>
+                                <button><Link to={"/photoviewa/" + item._id}>View</Link></button>
+                                </td>
+                                
                             </tr>
                         ))
                             : <tr> <td><strong>No Records
