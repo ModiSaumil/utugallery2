@@ -31,7 +31,7 @@ const AboutUS = () => {
     return (
         <div>
             <h1>Uka Tarsadiya University Photo Gallery</h1>
-            <a href='http://utu.ac.in/'>visit us</a>
+            <a href='http://utu.ac.in/' target="_blank">visit us</a>
         </div>
     )
 }
