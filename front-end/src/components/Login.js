@@ -129,7 +129,7 @@ const Login = () => {
 
             <input className="inputbox" type="password" placeholder="Enter Password" onChange={(e) => setPassword(e.target.value)} value={password} required></input>
             {error && !password && <span className="invalid-input" style={{ fontWeight: 'bold', color: 'red' }}>Please fill out this field!</span>}
-            {/* <p><Link to="/resetpasspage">Forgot password ?</Link></p> */}
+            <p><Link to="/resetpass">Forgot password ?</Link></p>
             <button className="btnsn" onClick={handleLogin} type="button">Login</button>
 
         </div>

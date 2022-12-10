@@ -15,25 +15,40 @@ const Resetpass = () => {
     const auth = localStorage.getItem("data");
 
     useEffect(() => {
-        getUserDetails();
+        // getUserDetails();
     }, [])
 
-    const getUserDetails = async () => {
+    //const getUserDetails = async () => {
         // const userid = JSON.parse(localStorage.getItem("data"))._id;
-        let result = await fetch(`http://localhost:5000/update_users/${params.id}`);
-        result = await result.json();
+        //let result = await fetch(`http://localhost:5000/update_users/${params.id}`);
+        //result = await result.json();
       
         // setEnro(result.enrollmentno)
         // setFname(result.fname)
         // setLname(result.lname)
         // setContact(result.contactno)
-        setPassword(result.password)
-        setEmail(result.emailid)
-    }
+        //setPassword(result.password)
+        //setEmail(result.emailid)
+   // }
 
-    const updateuser = async (emailid) => {
-        let result = fetch(`http://localhost:5000/updateUserbyemailid/${emailid}`, {
-            method: 'Put',
+    // const updateuser = async () => {
+    //     let result = fetch(`http://localhost:5000/updateUserbyemailid/`, {
+    //         method: 'Put',
+    //         body: JSON.stringify({ emailid, password }),
+    //         headers: {
+    //             'Content-Type': "application/json"
+    //         }
+    //     });
+        // result = (await result).json()
+    //     console.warn(result)
+    //     alert('password updated..')
+    //     navigate('/Login');
+    //     localStorage.clear();
+    // }
+
+    const updatepass = async () =>{
+        let result = await fetch('http://localhost:5000/updateUserbyemailid', {
+            method: 'put',
             body: JSON.stringify({ emailid, password }),
             headers: {
                 'Content-Type': "application/json"
@@ -43,10 +58,9 @@ const Resetpass = () => {
         console.warn(result)
         alert('password updated..')
         navigate('/Login');
-        localStorage.clear();
     }
 
- 
+
 
     return (
         <div className="divsgn">
@@ -58,7 +72,7 @@ const Resetpass = () => {
             <input className="inputbox" value={emailid} onChange={(e) => setEmail(e.target.value)} type="text" placeholder="Enter Email id"></input>
             <input className="inputbox" value={password} onChange={(e) => setPassword(e.target.value)} type="password" placeholder="Enter Password"></input>
 
-            <button onClick={updateuser} className="btnsn" type="button">confirm</button>
+            <button onClick={updatepass} className="btnsn" type="button">confirm</button>
         </div>
     )
 

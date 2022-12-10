@@ -124,16 +124,7 @@ app.get("/getUserbyemailid/:emailid", async (req, resp, next) => {
     }
 })
 
-//updateuserbyemailid
-app.put("/updateUserbyemailid/:emailid", async(req, resp ,next)=>{
-    let result = await User.updateOne(
-        {emailid:req.params.emailid},
-        {
-            $set : req.body
-        }
-    )
-    resp.send(result)
-})
+
 
 //getallphotosbyuploadid 
 app.get("/getPhotosbyuploadid/:userid", async (req, resp, next) => {
@@ -411,5 +402,49 @@ app.get("/getPhotosbyid/:id", async (req, resp, next) => {
 //     });
 //     await productmul.save();
 // })
+
+//updateuserbyemailid
+app.put("/updateUserbyemailid", async(req, resp ,next)=>{
+    try {
+        const userEmail = req.body.emailid;
+        const Password = req.body.password;
+        const data = await User.findOne({ emailid: userEmail });
+        if (data) {
+            const userdata = await User.updateOne({ emailid: userEmail }, { $set: { password: Password } });
+            if (userdata) {
+                resp.send("Your Password has been  updated");
+            }
+            else {
+                resp.send("Some problem to updated Password");
+            }
+        }
+    }
+    catch (err) {
+        console.log(err.message);
+    }
+})
+
+// updatepassword: async (req, resp) => {
+    // try {
+    //     const userEmail = req.body.Email;
+    //     const Password = req.body.Password;
+    //     const data = await registermodel.findOne({ Email: userEmail });
+    //     if (data) {
+    //         const salt = await bcrypt.genSalt(10);
+    //         newpass = await bcrypt.hash(Password, salt);
+    //         const userdata = await registermodel.updateOne({ Email: userEmail }, { $set: { Password: newpass } });
+    //         if (userdata) {
+    //             resp.send("Your Password has been  updated");
+    //         }
+    //         else {
+    //             resp.send("Some problem to updated Password");
+    //         }
+    //     }
+    // }
+    // catch (err) {
+    //     console.log(err.message);
+    // }
+// },
+
 
 app.listen(5000)

@@ -95,8 +95,8 @@ function App() {
           <Route path="/aboutus" element={<AboutUS />}></Route>
           <Route path="/SignUp" element={<SignUp />}></Route>
           <Route path="/Login" element={<Login />}></Route>
-          <Route path="/resetpasspage" element={<Resetpasspage />}></Route>
-          <Route path="/resetpass/" element={<Resetpass />}></Route>
+          {/* <Route path="/resetpasspage" element={<Resetpasspage />}></Route> */}
+          <Route path="/resetpass" element={<Resetpass />}></Route>
         </Routes>
 
       </BrowserRouter>
