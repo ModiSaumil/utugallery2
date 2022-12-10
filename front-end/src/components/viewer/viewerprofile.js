@@ -8,7 +8,11 @@ const Viewerprofile = () => {
     const [contactno, setContact] = useState("");
     const [password, setPassword] = useState("");
     const [emailid, setEmail] = useState("");
-
+    const [passwordType, setPasswordType] = useState("password");
+    // const [passwordInput, setPasswordInput] = useState("");
+    const handlePasswordChange =(e)=>{
+        setPassword(e.target.value);
+    }
     const params = useParams();
     const navigate = useNavigate();
 
@@ -17,7 +21,14 @@ const Viewerprofile = () => {
         
     }, [])
 
-  
+    const togglePassword =()=>{
+        if(passwordType==="password")
+        {
+         setPasswordType("text")
+         return;
+        }
+        setPasswordType("password")
+      }
 
     const getUserDetails = async () => {
 
@@ -54,8 +65,10 @@ const Viewerprofile = () => {
             <input className="inputbox" value={lname} onChange={(e) => setLname(e.target.value)} type="text" placeholder="Enter Last Name"></input>
             <input className="inputbox" value={contactno} onChange={(e) => setContact(e.target.value)} type="text" placeholder="Enter Contact Number"></input>
             <input className="inputbox" value={emailid} onChange={(e) => setEmail(e.target.value)} type="text" placeholder="Enter Email id"></input>
-            <input className="inputbox" value={password} onChange={(e) => setPassword(e.target.value)} type="password" placeholder="Enter Password"></input>
-
+            <input className="inputbox" value={password}  onChange={(e) => setPassword(e.target.value)} type={passwordType} placeholder="Enter Password"></input>
+            <button className="btnsn" onClick={togglePassword}>
+                     { passwordType==="password"? <a>view</a> :<a>hide</a> }
+                     </button>
             <button onClick={updateuser} className="btnsn" type="button">Update</button>
         </div>
     )
